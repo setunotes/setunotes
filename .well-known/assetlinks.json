@@ -1,0 +1,16 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.setunotes.setunotes",
+      "sha256_cert_fingerprints": [
+        "C8:5B:91:25:E5:7A:70:F1:8D:0A:11:1B:E3:0B:7F:1C:43:20:88:8F:64:5D:61:BD:80:EE:A0:D8:B2:DE:90:E5"
+      ]
+    }
+  }
+]
+
