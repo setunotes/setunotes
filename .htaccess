@@ -1,0 +1,94 @@
+# Enable GZIP compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Set cache headers for static files
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # Images
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  
+  # CSS and JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  
+  # Fonts
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/otf "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  
+  # Documents (HTML files refresh daily for updates)
+  ExpiresByType text/html "access plus 1 day"
+</IfModule>
+
+# Set ETag headers for caching
+<IfModule mod_headers.c>
+  Header unset ETag
+  FileETag None
+</IfModule>
+
+# Remove server signature for security
+ServerTokens Prod
+ServerSignature Off
+
+# Enable mod_rewrite
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # Remove www prefix (optional - choose one approach)
+  # RewriteCond %{HTTP_HOST} ^www\.ncertlibrary\.com$ [NC]
+  # RewriteRule ^(.*)$ https://ncertlibrary.com/$1 [R=301,L]
+  
+  # Redirect HTTP to HTTPS (uncomment when deploying with SSL)
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  
+  # Block direct access to certain files
+  RewriteRule ^(\.htaccess|\.htpasswd|\.env)$ - [F]
+</IfModule>
+
+# Disable directory listing
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
+
+# Block access to sensitive files
+<FilesMatch "\.(env|json|log|sql|bak|swp|zip)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Add Security Headers
+<IfModule mod_headers.c>
+  Header set X-UA-Compatible "IE=edge"
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Set character encoding
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .html .css .js .json .xml
+
+# MIME types
+AddType application/javascript js
+AddType application/json json
+AddType text/css css
+AddType text/xml xml
+AddType image/svg+xml svg svgz

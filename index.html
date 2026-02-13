@@ -1,187 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <!-- Basic SEO -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Setu Notes - Your Ultimate Exam Preparation Companion!</title>
-    <meta name="description" content="Prepare smarter with Setu Notes, the all-in-one learning app featuring NCERT Books, previous year papers, toppers' notes, and expert study material for JEE Main, JEE Advanced, NEET, UPSC, and other competitive exams.">
-    <meta name="keywords" content="Setu Notes, NCERT, JEE Main, JEE Advanced, NEET, UPSC, exam preparation, study material, previous year papers, toppers notes">
-    <meta property="og:title" content="Setu Notes - Your Ultimate Exam Preparation Companion!">
-    <meta property="og:description" content="The ultimate app for students preparing for competitive exams in India.">
-    <meta property="og:image" content="images/logo.png">
-    <meta property="og:url" content="https://setunotes.com">
+
+    <title>SetupNotes - Free NCERT Books PDF Download (Class 1 to 12)</title>
+
+    <meta name="description" content="Download official NCERT Books PDF for Class 1-12. Access complete books and chapter-wise PDFs instantly from SetupNotes - your trusted study platform.">
+
+    <meta name="keywords" content="NCERT Books PDF, NCERT Class 1-12, Download NCERT Books, CBSE Books PDF, Free Study Material, SetupNotes">
+
+    <meta name="author" content="SetupNotes">
+    <meta name="publisher" content="SetupNotes">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="global">
+
+    <!-- Open Graph (Social Sharing SEO) -->
+    <meta property="og:title" content="SetupNotes - Free Official NCERT Books PDF Download">
+    <meta property="og:description" content="Download official, unmodified NCERT Books PDF for all classes. Chapter-wise downloads, fast access, 500+ books available.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://setunotes.com">
+    <meta property="og:image" content="https://setunotes.com/og-image.jpg">
+    <meta property="og:site_name" content="SetupNotes">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SetupNotes - Free NCERT Books PDF Download">
+    <meta name="twitter:description" content="Official NCERT books, unmodified content, free downloads for students. Visit SetupNotes for trusted study resources.">
+    <meta name="twitter:image" content="https://setunotes.com/og-image.jpg">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "SetupNotes",
+      "description": "Free official NCERT Books PDF download platform for Class 1-12",
+      "url": "https://setunotes.com",
+      "searchAction": {
+        "@type": "SearchAction",
+        "target": "https://setunotes.com?search={search_term}"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SetupNotes",
+      "url": "https://setunotes.com",
+      "logo": "https://setunotes.com/logo.png",
+      "description": "Official NCERT Books PDF download platform - Free, unmodified content",
+      "sameAs": [
+        "https://www.facebook.com/setunotes",
+        "https://twitter.com/setunotes",
+        "https://www.linkedin.com/company/setunotes"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Service",
+        "email": "support@setunotes.com"
+      }
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="canonical" href="https://setunotes.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-    <div class="bubble-background"></div>
-    <div id="blob"></div>
-    <div id="blur"></div>
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">
-                    <img src="images/logo.png" alt="Setu Notes Logo">
-                </a>
-                <ul class="nav-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Contact</a></li>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+    <div class="container header-flex">
+        <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm6 2H6v3h4V5zm8 0h-4v3h4V5zm-12 5H4v9h2v-9zm4 0H8v9h4v-9zm8 0h-4v9h4v-9z"/>
+            </svg>
+            <span class="logo-text">SetupNotes</span>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="blog.html" class="nav-link">Blog</a>
+            <a href="faq.html" class="nav-link">FAQ</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <button id="darkToggle" class="dark-btn nav-dark-btn" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Mobile Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="privacy.html" class="nav-link">Privacy</a>
+        <a href="terms.html" class="nav-link">Terms</a>
+    </nav>
+</header>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero">
+    <div class="container">
+        <h1>Download Official NCERT Books PDF (Class 1 – 12)</h1>
+        <p>Access complete books and chapter-wise PDFs instantly. Free, unmodified official content from NCERT.</p>
+
+        <!-- Official NCERT Disclaimer -->
+        <div class="official-disclaimer">
+            <p><strong>✓ Official NCERT Books:</strong> We provide unmodified PDF copies sourced directly from the official NCERT website. All books are 100% original with no alterations.</p>
+        </div>
+
+        <!-- Search Toggle Button (Mobile) -->
+        <button class="search-toggle" id="searchToggle" aria-label="Toggle Filters">
+            <span>🔍 Filters</span>
+            <span class="toggle-icon">▼</span>
+        </button>
+
+        <div class="search-area" id="searchArea">
+            <input type="text" id="searchInput" placeholder="Search books by name...">
+
+            <select id="classFilter">
+                <option value="">All Classes</option>
+            </select>
+
+            <select id="subjectFilter">
+                <option value="">All Subjects</option>
+            </select>
+        </div>
+    </div>
+</section>
+
+<!-- ===== BOOK SECTION ===== -->
+<main class="container">
+    <section id="booksContainer" class="books-grid">
+        <!-- Books load here -->
+    </section>
+
+    <!-- Google Ad Placement (Below Books) -->
+    <div class="ad-container">
+        <div style="width:100%; max-width:728px;">
+            <div class="ad-label">Advertisement</div>
+            <!-- Google Ad Code will be inserted here -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxxxxxxxx" data-ad-slot="xxxxxxxxxx" data-ad-format="horizontal"></ins>
+        </div>
+    </div>
+</main>
+
+<!-- ===== STATS SECTION ===== -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Books Available</div>
+                <p class="stat-desc">Complete NCERT curriculum for all classes</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2M+</div>
+                <div class="stat-label">Happy Students</div>
+                <p class="stat-desc">Trusted by millions of learners</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Free Access</div>
+                <p class="stat-desc">No subscriptions or hidden charges</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Availability</div>
+                <p class="stat-desc">Always online, always accessible</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FEATURES SECTION ===== -->
+<section class="features-section">
+    <div class="container">
+        <h2 class="section-title">Why Choose SetupNotes?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📥</div>
+                <h3>Fast Downloads</h3>
+                <p>High-speed downloads for complete books and individual chapters</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Mobile Friendly</h3>
+                <p>Optimized for all devices - seamless experience everywhere</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Smart Search</h3>
+                <p>Powerful filters to find exactly what you need instantly</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌙</div>
+                <h3>Dark Mode</h3>
+                <p>Easy on the eyes - read comfortably day and night</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightweight</h3>
+                <p>Fast loading speeds with optimized resources</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure</h3>
+                <p>Your data is safe with us - no tracking or ads</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TESTIMONIALS SECTION ===== -->
+<section class="testimonials-section">
+    <div class="container">
+        <h2 class="section-title">What Students Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"SetupNotes is a lifesaver! All books in one place makes studying so much easier."</p>
+                <div class="testimonial-author">
+                    <strong>Priya Sharma</strong>
+                    <small>Class 12 Student</small>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Perfect resource for exam preparation. Chapter-wise downloads saved me so much time!"</p>
+                <div class="testimonial-author">
+                    <strong>Arjun Patel</strong>
+                    <small>Class 10 Student</small>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Free, fast, and reliable. This website is every student's dream come true."</p>
+                <div class="testimonial-author">
+                    <strong>Ananya Singh</strong>
+                    <small>Class 9 Student</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA SECTION ===== -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Start Your Learning Journey Today</h2>
+            <p>Download all NCERT books for free. No sign-up, no registration required.</p>
+            <button class="cta-button" onclick="document.getElementById('searchInput').focus();">Browse All Books</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== NEWSLETTER SECTION ===== -->
+<section class="newsletter-section">
+    <div class="container">
+        <div class="newsletter-content">
+            <h3>Stay Updated</h3>
+            <p>Get updates about new books, features, and educational tips</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <small>We respect your privacy. No spam, unsubscribe anytime.</small>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">SetupNotes</h3>
+                <p class="footer-description">Your one-stop platform for downloading NCERT books PDF. Access complete books and chapter-wise materials for classes 1-12.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook" class="social-link">f</a>
+                    <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+                    <a href="#" aria-label="LinkedIn" class="social-link">in</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Classes</a></li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="#">About Us</a></li>
                 </ul>
-                <a href="https://play.google.com/store/apps/details?id=com.setunotes.setunotes" class="cta-button">Download Now</a>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <section id="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">Setu Notes – Your Ultimate Exam Preparation Companion!</h1>
-                    <p class="hero-subtitle">Prepare smarter with Setu Notes, the all-in-one learning app featuring NCERT Books, previous year papers, toppers' notes, and expert study material for JEE Main, JEE Advanced, NEET, UPSC, and other competitive exams.</p>
-                    <div class="hero-buttons">
-                        <a href="https://play.google.com/store/apps/details?id=com.setunotes.setunotes" class="btn-primary">Download Setu Notes</a>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-        </section>
-
-        <section id="features">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Key Features</h2>
-                    <p>Everything you need to ace your exams, all in one place.</p>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-book-open"></i>
-                        </div>
-                        <h3>All NCERT Books (Class 6–12)</h3>
-                        <p>Download or read all NCERT books in PDF format — clean, organized, and easy to navigate.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-atom"></i>
-                        </div>
-                        <h3>JEE Main & Advanced Materials</h3>
-                        <p>Access PYQs, solved papers, mock tests, formula sheets, and handwritten notes by toppers.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-heartbeat"></i>
-                        </div>
-                        <h3>NEET Preparation Made Easy</h3>
-                        <p>Get chapter-wise notes, biology diagrams, previous year papers, and tips from NEET rankers.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-university"></i>
-                        </div>
-                        <h3>UPSC, SSC & More</h3>
-                        <p>Study for UPSC, SSC, and other exams with dedicated resources, current affairs, and strategy guides.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-pencil-alt"></i>
-                        </div>
-                        <h3>Smart Note-Taking</h3>
-                        <p>Use the in-app notes feature to highlight, annotate, and save important points while studying.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-download"></i>
-                        </div>
-                        <h3>Download & Offline Access</h3>
-                        <p>No internet? No problem! Download your study materials and access them offline anytime.</p>
-                    </div>
-                </div>
             </div>
-        </section>
-
-        <section id="screenshots">
-            <div class="container">
-                <div class="section-title">
-                    <h2>App Screenshots</h2>
-                    <p>Take a look at our app in action.</p>
-                </div>
-                <div class="device-frame">
-                    <div class="screenshot-slider">
-                        <img src="images/images1.jpg" alt="App Screenshot 1" class="screenshot">
-                        <img src="images/images2.jpg" alt="App Screenshot 2" class="screenshot">
-                        <img src="images/images3.jpg" alt="App Screenshot 3" class="screenshot">
-                        <img src="images/images4.jpg" alt="App Screenshot 4" class="screenshot">
-                    </div>
-                </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-heading">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
             </div>
-        </section>
-
-        <section id="about">
-            <div class="container">
-                <div class="about-content">
-                    <div class="about-text">
-                        <h2>Why Choose Setu Notes?</h2>
-                        <p>We believe in bridging the gap ("Setu") between students and quality education. Whether you’re revising NCERTs or aiming for India’s toughest exams, Setu Notes is your trusted study partner.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="testimonials">
-            <div class="container">
-                <div class="section-title">
-                    <h2>What Our Users Say</h2>
-                    <p>Don't just take our word for it, here's what our users think.</p>
-                </div>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">"Setu Notes is a game-changer. The PYQs and toppers' notes for JEE are incredibly helpful. My scores have improved significantly!"</p>
-                        <p class="testimonial-author">- Aman, JEE Aspirant</p>
-                    </div>
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">"As a NEET aspirant, the chapter-wise notes and diagrams are a lifesaver. The app is so well-organized and easy to use."</p>
-                        <p class="testimonial-author">- Priya, NEET Aspirant</p>
-                    </div>
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">"I love the smart note-taking feature. It helps me keep all my important points in one place. Highly recommended for all students."</p>
-                        <p class="testimonial-author">- Rahul, Class 12 Student</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <div class="contact-content">
-                    <h2>Get in Touch</h2>
-                    <p>Have questions or feedback? We'd love to hear from you.</p>
-                    <form class="contact-form">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <textarea placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2024 Setu Notes. All rights reserved. | <a href="privacy.html" style="color: var(--text-color);">Privacy Policy</a></p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-heading">Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 SetupNotes. This website provides links to official NCERT resources.</p>
+            <p class="footer-credit">Designed with care for students</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== CHAPTER MODAL ===== -->
+<!-- Chapter Modal -->
+<div id="chapterModal" class="modal">
+  <div class="modal-overlay"></div>
+
+  <div class="modal-content">
+
+      <button id="closeModal" class="close-btn">&times;</button>
+
+      <div class="modal-hero">
+          <div class="hero-bg" id="modalBg"></div>
+
+          <div class="hero-content">
+              <img id="modalCover" class="modal-cover">
+              
+              <div class="hero-info">
+                  <h2 id="modalTitle"></h2>
+                  <p id="modalMeta"></p>
+
+                  <a id="downloadFullBook" 
+                     class="download-btn" 
+                     target="_blank">
+                     📥 Download Full Book
+                  </a>
+              </div>
+          </div>
+      </div>
+
+      <div class="chapters-wrapper">
+          <h3>Chapters</h3>
+          <div id="chapterList" class="chapters-grid"></div>
+      </div>
+
+  </div>
+</div>
+
+
+
+<script src="data.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>

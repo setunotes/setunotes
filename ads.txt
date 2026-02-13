@@ -1,0 +1,12 @@
+# ads.txt file for setunotes.com
+# This file contains authorized digital sellers information
+# Instructions: Replace the pub-xxxxxxxxxxxxxxxx with your actual Google Publisher ID
+
+# Google AdSense
+google.com, ca-pub-xxxxxxxxxxxxxxxx, DIRECT, f08c47fec0942fa0
+
+# Disclaimer:
+# This ads.txt file should be placed in the root directory of your domain
+# Replace "ca-pub-xxxxxxxxxxxxxxxx" with your actual Google AdSense Publisher ID
+# You can find your Publisher ID in your Google AdSense account under Settings > Account Information
+# After replacing, the URL to this file will be: https://setunotes.com/ads.txt
