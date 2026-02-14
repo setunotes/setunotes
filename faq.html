@@ -62,14 +62,15 @@
             <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm6 2H6v3h4V5zm8 0h-4v3h4V5zm-12 5H4v9h2v-9zm4 0H8v9h4v-9zm8 0h-4v9h4v-9z"/>
             </svg>
-            <span class="logo-text">SetupNotes</span>
+               <span class="logo-text"> <a href="index.html" style="text-decoration: none;">SetupNotes</a></span>
         </div>
 
         <nav class="nav">
-            <a href="index.html" class="nav-link active">Home</a>
+
+            <a href="index.html" class="nav-link ">Home</a>
             <a href="about.html" class="nav-link">About</a>
             <a href="blog.html" class="nav-link">Blog</a>
-            <a href="faq.html" class="nav-link">FAQ</a>
+            <a href="faq.html" class="nav-link active">FAQ</a>
             <a href="contact.html" class="nav-link">Contact</a>
             <button id="darkToggle" class="dark-btn nav-dark-btn" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
                 <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -103,7 +104,7 @@
         <a href="blog.html" class="nav-link">Blog</a>
         <a href="faq.html" class="nav-link">FAQ</a>
         <a href="contact.html" class="nav-link">Contact</a>
-        <a href="privacy.html" class="nav-link">Privacy</a>
+        <a href="privacy-policy.html" class="nav-link">Privacy</a>
         <a href="terms.html" class="nav-link">Terms</a>
     </nav>
 </header>
@@ -333,7 +334,7 @@
             <div class="footer-section">
                 <h4 class="footer-heading">Legal</h4>
                 <ul class="footer-links">
-                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     <li><a href="terms.html">Terms of Service</a></li>
                     <li><a href="#">Disclaimer</a></li>
                     <li><a href="#">Cookie Policy</a></li>
@@ -348,32 +349,7 @@
     </div>
 </footer>
 
-<script>
-// FAQ Accordion functionality
-document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', () => {
-        const item = question.parentElement;
-        const answer = item.querySelector('.faq-answer');
-        const toggle = question.querySelector('.faq-toggle');
-        
-        item.classList.toggle('open');
-        toggle.textContent = item.classList.contains('open') ? '−' : '+';
-    });
-});
-
-// Dark mode toggle
-const darkToggle = document.getElementById("darkToggle");
-if (darkToggle) {
-    darkToggle.addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-        localStorage.setItem("darkMode", document.body.classList.contains("dark"));
-    });
-}
-
-if (localStorage.getItem("darkMode") === "true") {
-    document.body.classList.add("dark");
-}
-</script>
-<script src="script.js"></script>
+<script src="data.js"></script>
+<script src="script.js" defer></script>
 </body>
 </html>

@@ -1,5 +1,20 @@
 /* ===============================
-   MOBILE MENU TOGGLE
+   DARK MODE
+=================================*/
+const darkToggle = document.getElementById("darkToggle");
+if (darkToggle) {
+    darkToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        localStorage.setItem("darkMode", document.body.classList.contains("dark"));
+    });
+}
+
+if (localStorage.getItem("darkMode") === "true") {
+    document.body.classList.add("dark");
+}
+
+/* ===============================
+   MOBILE NAVIGATION
 =================================*/
 const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 const mobileNav = document.getElementById("mobileNav");
@@ -49,8 +64,6 @@ const booksContainer = document.getElementById("booksContainer");
 const classFilter = document.getElementById("classFilter");
 const subjectFilter = document.getElementById("subjectFilter");
 const searchInput = document.getElementById("searchInput");
-const darkToggle = document.getElementById("darkToggle");
-
 const modal = document.getElementById("chapterModal");
 const closeBtn = document.getElementById("closeModal");
 const overlay = document.querySelector(".modal-overlay");
@@ -268,6 +281,18 @@ function setupPagination(totalBooks) {
 
 
 /* ===============================
+   SHUFFLE FUNCTION
+=================================*/
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+/* ===============================
    FILTER + SEARCH
 =================================*/
 function applyFilters(resetPage = true) {
@@ -275,17 +300,29 @@ function applyFilters(resetPage = true) {
     if (resetPage) currentPage = 1;
 
     let filtered = allBooks;
+    let hasActiveFilter = false;
 
-    if (classFilter.value)
+    if (classFilter.value) {
         filtered = filtered.filter(b => b.class === classFilter.value);
+        hasActiveFilter = true;
+    }
 
-    if (subjectFilter.value)
+    if (subjectFilter.value) {
         filtered = filtered.filter(b => b.subject === subjectFilter.value);
+        hasActiveFilter = true;
+    }
 
-    if (searchInput.value)
+    if (searchInput.value) {
         filtered = filtered.filter(b =>
             b.text.toLowerCase().includes(searchInput.value.toLowerCase())
         );
+        hasActiveFilter = true;
+    }
+
+    // If no filters applied, shuffle the results
+    if (!hasActiveFilter) {
+        filtered = shuffleArray(filtered);
+    }
 
     renderBooks(filtered);
 }
@@ -347,29 +384,6 @@ overlay.addEventListener("click", closeModal);
 document.addEventListener("keydown", e => {
     if (e.key === "Escape") closeModal();
 });
-
-/* ===============================
-   DARK MODE
-=================================*/
-darkToggle.addEventListener("click", () => {
-
-    document.body.classList.toggle("dark");
-
-    darkToggle.textContent =
-        document.body.classList.contains("dark")
-            ? "☀️"
-            : "🌙";
-
-    localStorage.setItem(
-        "darkMode",
-        document.body.classList.contains("dark")
-    );
-});
-
-if (localStorage.getItem("darkMode") === "true") {
-    document.body.classList.add("dark");
-    darkToggle.textContent = "☀️";
-}
 
 /* ===============================
    SERVICE WORKER (OPTIONAL)
@@ -520,4 +534,4 @@ window.addEventListener("load", () => {
 /* ===============================
    INITIAL LOAD
 =================================*/
-renderBooks(allBooks);
+applyFilters();
