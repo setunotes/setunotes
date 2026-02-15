@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Book Details - SetupNotes</title>
+    <meta id="pageDescription" name="description" content="NCERT Book Details - View chapters and download your NCERT books from SetupNotes">
+    <meta id="pageKeywords" name="keywords" content="NCERT Books, download chapters, book details">
+    <meta id="ogTitle" property="og:title" content="Book Details - SetupNotes">
+    <meta id="ogDescription" property="og:description" content="NCERT Book Details">
+    <meta id="ogImage" property="og:image" content="">
+    <meta id="canonicalUrl" rel="canonical" href="">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+    <div class="container header-flex">
+        <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm6 2H6v3h4V5zm8 0h-4v3h4V5zm-12 5H4v9h2v-9zm4 0H8v9h4v-9zm8 0h-4v9h4v-9z"/>
+            </svg>
+            <span class="logo-text"><a href="index.html" style="text-decoration: none;">SetupNotes</a></span>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="blog.html" class="nav-link">Blog</a>
+            <a href="faq.html" class="nav-link">FAQ</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <button id="darkToggle" class="dark-btn nav-dark-btn" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Mobile Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="privacy.html" class="nav-link">Privacy</a>
+        <a href="terms.html" class="nav-link">Terms</a>
+    </nav>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="detail-page-wrapper">
+    <!-- Background with gradient overlay -->
+    <div class="page-background">
+        <img id="bgImage" src="" alt="background" class="bg-image">
+        <div class="bg-overlay"></div>
+    </div>
+
+    <div class="container detail-page">
+        <div class="detail-header">
+            <a href="index.html" class="back-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to Books
+            </a>
+        </div>
+
+        <div class="detail-container">
+            <!-- Book Cover & Info -->
+            <div class="detail-left">
+                <div class="book-cover-wrapper">
+                    <img id="bookCover" src="" alt="Book Cover" class="book-cover-large">
+                    <div class="cover-shadow"></div>
+                </div>
+                
+                <div class="book-meta-glass">
+                    <div class="meta-item">
+                        <span class="meta-label">Class</span>
+                        <p id="className" class="meta-value"></p>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Subject</span>
+                        <p id="subjectName" class="meta-value"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Book Details & Chapters -->
+            <div class="detail-right">
+                <div class="detail-header-glass">
+                    <h1 id="bookTitle"></h1>
+                    <p class="book-subtitle">Official NCERT Book</p>
+                </div>
+
+                <div class="detail-buttons">
+                    <a id="downloadFullBtn" href="#" class="btn btn-primary btn-lg" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Full Book
+                    </a>
+                </div>
+
+                <div class="chapters-section">
+                    <div class="section-header">
+                        <h2>📚 Available Chapters</h2>
+                        <p id="chapterCount" class="chapter-count"></p>
+                    </div>
+                    <div id="chaptersList" class="chapters-grid"></div>
+                </div>
+
+                <div class="no-book" id="noBook" style="display: none;">
+                    <div class="no-book-icon">📚</div>
+                    <p>Book not found</p>
+                    <span>Please go back and select a book.</span>
+                    <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">SetupNotes</h3>
+                <p class="footer-description">Your one-stop platform for downloading NCERT books PDF. Access complete books and chapter-wise materials for classes 1-12.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-heading">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-heading">Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 SetupNotes. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+/* ===== UTILITY FUNCTION: Generate slug from text ===== */
+function generateSlug(text) {
+    return text
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+}
+
+/* ===== UTILITY FUNCTION: Create book slug ===== */
+function createBookSlug(bookClass, subject, bookTitle) {
+    return `class-${bookClass}-${generateSlug(subject)}-${generateSlug(bookTitle)}`;
+}
+
+/* ===== DETAIL PAGE SCRIPT ===== */
+const params = new URLSearchParams(window.location.search);
+const bookSlug = params.get('book');
+
+const bookTitle = document.getElementById('bookTitle');
+const bookCover = document.getElementById('bookCover');
+const className = document.getElementById('className');
+const subjectName = document.getElementById('subjectName');
+const chaptersList = document.getElementById('chaptersList');
+const downloadFullBtn = document.getElementById('downloadFullBtn');
+const noBook = document.getElementById('noBook');
+const detailRight = document.querySelector('.detail-right');
+
+// Find book in data by slug
+let foundBook = null;
+let bookClass = '';
+let bookSubject = '';
+
+for (const cls in ncertData.books) {
+    for (const subject in ncertData.books[cls]) {
+        for (const book of ncertData.books[cls][subject]) {
+            const slug = createBookSlug(cls, subject, book.text);
+            if (slug === bookSlug) {
+                foundBook = book;
+                bookClass = cls;
+                bookSubject = subject;
+                break;
+            }
+        }
+        if (foundBook) break;
+    }
+    if (foundBook) break;
+}
+
+// Display book or show error
+if (foundBook) {
+    const bookCode = foundBook.code;
+    
+    // Update page title and meta tags for SEO
+    const pageTitle = `${foundBook.text} - Class ${bookClass} ${bookSubject} | SetupNotes`;
+    const metaDescription = `Download ${foundBook.text} for Class ${bookClass} ${bookSubject}. View chapters and download NCERT book PDF from SetupNotes.`;
+    const pageKeywords = `${foundBook.text}, NCERT ${bookSubject}, Class ${bookClass}, download PDF, chapters`;
+    const canonicalUrl = `https://setunotes.com/detail.html?book=${bookSlug}`;
+    
+    document.title = pageTitle;
+    document.getElementById('pageDescription').setAttribute('content', metaDescription);
+    document.getElementById('pageTitle').setAttribute('content', pageTitle);
+    document.getElementById('pageKeywords').setAttribute('content', pageKeywords);
+    document.getElementById('ogTitle').setAttribute('content', pageTitle);
+    document.getElementById('ogDescription').setAttribute('content', metaDescription);
+    document.getElementById('canonicalUrl').setAttribute('href', canonicalUrl);
+    
+    // Set OG image and background
+    const ogImage = `${ncertData.url}${bookCode}cc.jpg`;
+    document.getElementById('ogImage').setAttribute('content', ogImage);
+    document.getElementById('bgImage').src = ogImage;
+    
+    // Display book info
+    bookTitle.textContent = foundBook.text;
+    bookCover.src = ogImage;
+    bookCover.alt = `${foundBook.text} - Class ${bookClass}`;
+    className.textContent = `Class ${bookClass}`;
+    subjectName.textContent = bookSubject;
+
+    // Set download link
+    downloadFullBtn.href = `${ncertData.url}${bookCode}dd.zip`;
+
+    // Generate chapters
+    let [start, end] = foundBook.chapters.split('-').map(Number);
+    if (start < 1) start = 1;
+
+    const totalChapters = end - start + 1;
+    document.getElementById('chapterCount').textContent = `${totalChapters} chapters available`;
+
+    for (let i = start; i <= end; i++) {
+        const chapterNumber = String(i).padStart(2, '0');
+        const chapterLink = document.createElement('a');
+        chapterLink.href = `${ncertData.url}${bookCode}${chapterNumber}.pdf`;
+        chapterLink.target = '_blank';
+        chapterLink.className = 'chapter-card-glass';
+        chapterLink.innerHTML = `
+            <div class="chapter-content">
+                <span class="chapter-icon">📄</span>
+                <span class="chapter-number">Chapter ${i}</span>
+                <span class="chapter-download">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                </span>
+            </div>
+        `;
+        chaptersList.appendChild(chapterLink);
+    }
+
+    // Add structured data (JSON-LD) for SEO
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": foundBook.text,
+        "url": canonicalUrl,
+        "image": ogImage,
+        "description": metaDescription,
+        "author": {
+            "@type": "Organization",
+            "name": "National Council of Educational Research and Training"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "SetupNotes"
+        },
+        "educationalLevel": `Class ${bookClass}`,
+        "inLanguage": "en"
+    };
+    
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+
+    detailRight.style.display = 'block';
+} else {
+    // Show no book found message
+    detailRight.style.display = 'none';
+    noBook.style.display = 'block';
+}
+
+// Dark mode
+const darkToggle = document.getElementById('darkToggle');
+if (darkToggle) {
+    darkToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+    });
+}
+
+if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark');
+}
+
+// Mobile menu
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileNav = document.getElementById('mobileNav');
+
+if (mobileMenuBtn && mobileNav) {
+    mobileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileMenuBtn.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+    });
+
+    mobileNav.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            mobileMenuBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.mobile-menu-btn') && !e.target.closest('.mobile-nav')) {
+            mobileMenuBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+        }
+    });
+}
+</script>
+<style>
+/* ===== DETAIL PAGE FANCY DESIGN ===== */
+
+.detail-page-wrapper {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background with image and overlay */
+.page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: blur(8px) brightness(0.6);
+}
+
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.detail-page {
+    position: relative;
+    z-index: 1;
+    padding: 40px 20px;
+}
+
+/* Back Button */
+.detail-header {
+    margin-bottom: 40px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateX(-5px);
+}
+
+/* Detail Container */
+.detail-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 50px;
+    align-items: start;
+    margin-top: 30px;
+}
+
+/* Left Side - Book Cover */
+.detail-left {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.book-cover-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.book-cover-large {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideInLeft 0.8s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cover-shadow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: -20px;
+    bottom: -20px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent);
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+/* Glass Meta Card */
+.book-meta-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    animation: slideInLeft 0.8s ease 0.1s both;
+}
+
+.meta-item {
+    margin-bottom: 15px;
+}
+
+.meta-item:last-child {
+    margin-bottom: 0;
+}
+
+.meta-label {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.meta-value {
+    font-size: 1.3rem;
+    color: white;
+    margin: 0;
+    font-weight: 700;
+}
+
+/* Right Side - Details */
+.detail-right {
+    animation: slideInRight 0.8s ease;
+}
+
+.detail-header-glass {
+    margin-bottom: 40px;
+}
+
+.detail-header-glass h1 {
+    font-size: 2.8rem;
+    color: white;
+    margin: 0 0 10px 0;
+    font-weight: 800;
+    line-height: 1.2;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.book-subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Buttons */
+.detail-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-lg {
+    padding: 18px 40px;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Chapters Section */
+.chapters-section {
+    margin-top: 50px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.section-header h2 {
+    font-size: 1.8rem;
+    color: white;
+    margin: 0;
+    font-weight: 800;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.chapter-count {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Chapters Grid */
+.chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 18px;
+}
+
+.chapter-card-glass {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.chapter-card-glass:nth-child(1) { animation-delay: 0.1s; }
+.chapter-card-glass:nth-child(2) { animation-delay: 0.15s; }
+.chapter-card-glass:nth-child(3) { animation-delay: 0.2s; }
+.chapter-card-glass:nth-child(4) { animation-delay: 0.25s; }
+.chapter-card-glass:nth-child(n+5) { animation-delay: 0.3s; }
+
+.chapter-card-glass:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+}
+
+.chapter-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.chapter-icon {
+    font-size: 2rem;
+}
+
+.chapter-number {
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: block;
+}
+
+.chapter-download {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.85rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.chapter-card-glass:hover .chapter-download {
+    opacity: 1;
+}
+
+/* No Book Found */
+.no-book {
+    text-align: center;
+    padding: 60px 40px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+}
+
+.no-book-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.no-book p {
+    font-size: 1.5rem;
+    color: white;
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+.no-book span {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    display: block;
+    margin: 15px 0 30px 0;
+}
+
+/* Animations */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Dark Mode Support */
+body.dark .back-btn,
+body.dark .book-meta-glass,
+body.dark .chapter-card-glass {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark .detail-header-glass h1,
+body.dark .section-header h2 {
+    color: #f0f0f0;
+}
+
+body.dark .book-meta-glass {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .detail-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .detail-header-glass h1 {
+        font-size: 2.2rem;
+    }
+
+    .chapters-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .detail-page {
+        padding: 20px 15px;
+    }
+
+    .book-cover-large {
+        max-width: 100%;
+    }
+
+    .detail-header-glass h1 {
+        font-size: 1.8rem;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .chapters-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 12px;
+    }
+
+    .chapter-card-glass {
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .chapter-icon {
+        font-size: 1.5rem;
+    }
+
+    .chapter-number {
+        font-size: 0.85rem;
+    }
+
+    .btn-lg {
+        padding: 14px 28px;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .detail-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-page {
+        padding: 20px 10px;
+    }
+
+    .detail-header-glass h1 {
+        font-size: 1.4rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .chapters-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .chapter-card-glass {
+        padding: 12px;
+    }
+
+    .chapter-icon {
+        font-size: 1.3rem;
+    }
+
+    .chapter-number {
+        font-size: 0.75rem;
+    }
+
+    .book-meta-glass {
+        padding: 15px;
+    }
+
+    .meta-value {
+        font-size: 1rem;
+    }
+}
+</style>
+</body>
+</html>

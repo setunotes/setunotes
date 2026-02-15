@@ -618,7 +618,8 @@ body.dark .top-controls select {
   margin-top: 12px;
 }
 
-.card-buttons button {
+.card-buttons button,
+.card-buttons a {
   flex: 1;
   padding: 8px;
   border-radius: 8px;
@@ -631,9 +632,14 @@ body.dark .top-controls select {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card-buttons button:hover {
+.card-buttons button:hover,
+.card-buttons a:hover {
   transform: scale(1.05);
 }
 
@@ -645,7 +651,8 @@ body.dark .top-controls select {
     margin-top: 12px;
   }
 
-  .card-buttons button {
+  .card-buttons button,
+  .card-buttons a {
     padding: 10px 12px;
     font-size: 12px;
     font-weight: 600;
@@ -655,7 +662,8 @@ body.dark .top-controls select {
     justify-content: center;
   }
 
-  .card-buttons button:active {
+  .card-buttons button:active,
+  .card-buttons a:active {
     transform: scale(0.98);
   }
 }

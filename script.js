@@ -93,6 +93,19 @@ if (!localStorage.getItem("ncertData")) {
 =================================*/
 let allBooks = [];
 
+// Helper function to generate SEO-friendly slugs
+function generateBookSlug(bookClass, subject, bookTitle) {
+    const slugify = (text) => {
+        return text
+            .toLowerCase()
+            .trim()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-');
+    };
+    return `class-${bookClass}-${slugify(subject)}-${slugify(bookTitle)}`;
+}
+
 for (const cls in ncertData.books) {
     for (const subject in ncertData.books[cls]) {
         ncertData.books[cls][subject].forEach(book => {
@@ -101,7 +114,8 @@ for (const cls in ncertData.books) {
                 subject,
                 text: book.text,
                 code: book.code,
-                chapters: book.chapters
+                chapters: book.chapters,
+                slug: generateBookSlug(cls, subject, book.text)
             });
         });
     }
@@ -152,22 +166,10 @@ function renderBooks(books) {
             <h4>${book.text}</h4>
             <small>Class ${book.class} • ${book.subject}</small>
             <div class="card-buttons">
-                <button class="view-btn">View Chapters</button>
+                <a href="detail.html?book=${book.slug}" class="view-btn">View Chapters</a>
                 <button class="download-btn">Download Book</button>
             </div>
         `;
-
-        // View Chapters
-        card.querySelector(".view-btn")
-            .addEventListener("click", () => {
-                openChapters(
-                    book.code,
-                    book.chapters,
-                    book.text,
-                    book.class,
-                    book.subject
-                );
-            });
 
         // Download Book
         card.querySelector(".download-btn")
