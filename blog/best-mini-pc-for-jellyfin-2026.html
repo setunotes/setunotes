@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Best Mini PC for Jellyfin Server 2026: Top Picks for 4K Transcoding</title>
+    <meta name="description" content="Discover the best Mini PCs for Jellyfin in 2026. Compare Beelink S12 Pro vs GMKtec, learn about Intel Quick Sync, and solve buffering issues with our expert guide.">
+    <meta name="keywords" content="Jellyfin server, Mini PC 2026, Intel N100, Quick Sync transcoding, Beelink S12 Pro, GMKtec NucBox G3, home media server, 4K HDR tone mapping">
+    <meta name="author" content="SetupNotes">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Best Mini PC for Jellyfin Server 2026: Top Picks for 4K Transcoding">
+    <meta property="og:description" content="Stop transcoding on a Raspberry Pi. Here is the ultimate guide to affordable Intel Quick Sync Mini PCs for your home media server.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://setunotes.com/blog/best-mini-pc-for-jellyfin-2026">
+    <meta property="og:image" content="https://setunotes.com/blog/images/jellyfin.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://setunotes.com/blog/best-mini-pc-for-jellyfin-2026">
+    <link rel="stylesheet" href="../style.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "The Best Mini PC for Jellyfin in 2026: Stop Transcoding on a Raspberry Pi",
+      "description": "Comprehensive guide to choosing the best mini PC for Jellyfin media servers with Intel Quick Sync support",
+      "datePublished": "2026-02-18",
+      "dateModified": "2026-02-18",
+      "author": {
+        "@type": "Organization",
+        "@name": "SetupNotes"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@name": "SetupNotes",
+        "logo": {
+          "@type": "ImageObject",
+          "@url": "https://setunotes.com/logo.png"
+        }
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Why is the Intel N100 considered the best budget choice for Jellyfin in 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Intel N100 is the 'gold standard' because it includes the Intel Quick Sync video engine. For under $160, it can handle multiple simultaneous 4K HDR transcodes while consuming less than 15W of power."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Can a Mini PC handle 4K HDR tone-mapping in Jellyfin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, provided it has an Intel CPU with integrated UHD graphics (Gen 12/Xe architecture or newer). Models like the N100 or N150 can perform hardware-accelerated HDR-to-SDR tone-mapping flawlessly."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Do I need 16GB of RAM for a dedicated Jellyfin server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "While 8GB is sufficient for basic Linux streaming, 16GB is highly recommended if you run Windows 11 or use Docker containers like Sonarr and Radarr. It also allows for a RAM-Disk to save SSD wear."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Why is my Jellyfin server buffering/stuttering on an Intel N100?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If your N100 is hitting 100% CPU usage, Hardware Acceleration is likely disabled. You must enable 'Intel QSV' in the Jellyfin Playback settings, otherwise, the server uses software transcoding which is too heavy for the CPU."
+        }
+      }]
+    }
+    </script>
+
+ <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2480499131663103"
+     crossorigin="anonymous"></script>
+    <style>
+        .article-header {
+            background: var(--gradient);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        .article-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        .article-content {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .article-content h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+
+        .article-content h3 {
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .article-content p {
+            margin-bottom: 16px;
+            font-size: 1.05em;
+            color: var(--text);
+        }
+
+        .featured-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.95em;
+        }
+
+        .specs-table th {
+            background: var(--primary);
+            color: white;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .specs-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .specs-table tr:hover {
+            background: var(--card);
+        }
+
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 24px 0;
+        }
+
+        .product-card h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .spec-value {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .rule-text {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #ef4444;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+            border-left: 4px solid #ef4444;
+        }
+
+        .back-to-blog {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: 0.3s ease;
+        }
+
+        .back-to-blog:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .cta-box p {
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 1.8em; }
+            .article-meta { flex-direction: column; align-items: flex-start; }
+            .specs-table { font-size: 0.85em; }
+            .specs-table th, .specs-table td { padding: 10px 8px; }
+            .rule-text { font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-flex">
+        <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm6 2H6v3h4V5zm8 0h-4v3h4V5zm-12 5H4v9h2v-9zm4 0H8v9h4v-9zm8 0h-4v9h4v-9z"/>
+            </svg>
+            <span class="logo-text"><a href="../index.html" style="text-decoration: none;">SetupNotes</a></span>
+        </div>
+
+        <nav class="nav">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../about.html" class="nav-link">About</a>
+            <a href="index.html" class="nav-link active">Blog</a>
+            <a href="../faq.html" class="nav-link">FAQ</a>
+            <a href="../contact.html" class="nav-link">Contact</a>
+            <button id="darkToggle" class="dark-btn nav-dark-btn" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Mobile Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../about.html" class="nav-link">About</a>
+        <a href="index.html" class="nav-link">Blog</a>
+        <a href="../faq.html" class="nav-link">FAQ</a>
+        <a href="../contact.html" class="nav-link">Contact</a>
+        <a href="../privacy-policy.html" class="nav-link">Privacy</a>
+        <a href="../terms.html" class="nav-link">Terms</a>
+    </nav>
+</header>
+
+<div class="breadcrumb">
+    <div class="container">
+        <a href="../index.html">Home</a> / <a href="index.html">Blog</a> / Jellyfin Mini PC Guide
+    </div>
+</div>
+
+<section class="article-header">
+    <div class="container">
+        <a href="index.html" class="back-to-blog">← Back to Blog</a>
+        <h1>The Best Mini PC for Jellyfin in 2026: Stop Transcoding on a Raspberry Pi</h1>
+        <div class="article-meta">
+            <span>📅 Updated: February 2026</span>
+            <span>⏱️ 12 min read</span>
+            <span>🔧 Tech Guide</span>
+        </div>
+    </div>
+</section>
+
+<main class="container article-content">
+
+    <img src="images/Best-mini-pc-for-jellyfin-server-2026.png" alt="Best Mini PC for Jellyfin Server" class="featured-image">
+
+    <p>If you are reading this, you are probably tired of paying for Netflix, Hulu, or Google Photos. You've likely heard about Jellyfin—the amazing, free media server that lets you own your movies and shows.</p>
+
+    <p>But here is the problem: <strong>You need a computer to run it 24/7.</strong></p>
+
+    <p>You might be thinking about using an old laptop or a Raspberry Pi. Don't do it. A Raspberry Pi 5 costs nearly $100 once you buy the case and power supply, and it struggles to "transcode" (convert) high-quality 4K movies.</p>
+
+    <p>The solution? <strong>A Mini PC with an Intel Processor.</strong></p>
+
+    <p>In 2026, you can get a tiny computer that is faster than a Pi, uses almost zero electricity, and handles multiple 4K streams flawlessly—all for under $180.</p>
+
+    <p style="text-align: center; font-style: italic; margin: 40px 0;">Here is the ultimate guide to the best Mini PCs for your Jellyfin server.</p>
+
+    <h2>What is "Intel Quick Sync" and Why Do You Need It?</h2>
+
+    <div class="highlight-box">
+        <strong>If you only remember one thing from this article, make it this:</strong> Do not build a Jellyfin server without Intel Quick Sync.
+    </div>
+
+    <p>To understand why, you first need to understand the hardest job your server does: <strong>Transcoding.</strong></p>
+
+    <h3>What is Transcoding?</h3>
+
+    <p>Imagine you have a high-quality 4K movie stored on your server.</p>
+
+    <p><strong>Scenario A:</strong> You play it on your expensive 4K TV. The TV understands the file format. The server just sends the file. This is called "Direct Play." It uses almost zero CPU power.</p>
+
+    <p><strong>Scenario B:</strong> You try to watch that same 4K movie on your iPhone while riding the bus, or on an old 1080p TV. Your phone can't play the massive 4K file.</p>
+
+    <p>This is where Transcoding happens. <strong>Your server must instantly "crush" that massive 4K movie into a smaller 1080p format that your phone can understand. It has to do this live, frame-by-frame, while you watch.</strong></p>
+
+    <p>This process is incredibly heavy. If you ask a regular CPU to do this, it will hit 100% usage, your fans will scream, and the video will stutter.</p>
+
+    <h3>Enter Intel Quick Sync Video (QSV)</h3>
+
+    <p>Intel chips have a tiny, dedicated physical section on the silicon chip solely for handling video. <strong>This is Quick Sync.</strong></p>
+
+    <p>When Jellyfin needs to transcode a movie:</p>
+    <ul>
+        <li>The main Intel CPU says, "I'm busy running Windows/Linux. Hey Quick Sync, handle this video."</li>
+        <li>The Quick Sync core wakes up, crushes the video instantly, and sends it to your phone.</li>
+        <li>The main CPU stays asleep (under 5% usage).</li>
+        <li>The fan stays silent.</li>
+    </ul>
+
+    <h3>The Great Encoder Showdown: Intel vs. AMD vs. NVIDIA</h3>
+
+    <p>Why not use a powerful Gaming PC with an NVIDIA card? Or a Ryzen chip? Here is the comparison for 2026:</p>
+
+    <table class="specs-table">
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Intel Quick Sync</th>
+                <th>NVIDIA NVENC</th>
+                <th>AMD AMF</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Efficiency</strong></td>
+                <td>⭐⭐⭐⭐⭐ Best</td>
+                <td>⭐⭐⭐ Good (Power Hungry)</td>
+                <td>⭐⭐ Weak</td>
+            </tr>
+            <tr>
+                <td><strong>Cost</strong></td>
+                <td>⭐⭐⭐⭐⭐ $150–$180</td>
+                <td>⭐⭐ $500+ (RTX card)</td>
+                <td>⭐⭐⭐ $200–$300</td>
+            </tr>
+            <tr>
+                <td><strong>4K Support</strong></td>
+                <td>⭐⭐⭐⭐⭐ Native</td>
+                <td>⭐⭐⭐⭐ Available</td>
+                <td>⭐⭐⭐ Patchy</td>
+            </tr>
+            <tr>
+                <td><strong>For Home Server?</strong></td>
+                <td>⭐⭐⭐⭐⭐ Perfect</td>
+                <td>⭐⭐ Overkill</td>
+                <td>⭐ Avoid</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="rule-text">
+        Rule #1: Always buy an Intel Mini PC for Jellyfin.
+    </div>
+
+    <h2>The Top 5 Mini PCs for Jellyfin in 2026</h2>
+
+    <div class="product-card">
+        <h3>1. Beelink S12 Pro (The Overall Winner)</h3>
+
+        <p><strong>Best For :</strong> The "I just want it to work" user.</p>
+
+        <p>The Beelink S12 Pro is the most popular home server for a reason. It strikes the perfect balance between price, build quality, and silent operation. It includes a 2.5-inch SATA slot, meaning you can add a cheap 2TB HDD inside specifically for your movies.</p>
+
+        <div style="margin: 20px 0;">
+            <div class="spec-row">
+                <span class="spec-label">CPU</span>
+                <span class="spec-value">Intel N100 (4 Cores, up to 3.4 GHz)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">GPU</span>
+                <span class="spec-value">Intel UHD (24 EUs) - Excellent Quick Sync support</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">RAM</span>
+                <span class="spec-value">16GB DDR4 (Single Slot, Replaceable)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Storage</span>
+                <span class="spec-value">500GB M.2 NVMe SSD + Empty 2.5" SATA Slot</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Networking</span>
+                <span class="spec-value">1x Gigabit Ethernet (1000Mbps), WiFi 6</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Power Consumption</span>
+                <span class="spec-value">Idle: ~6W | Max: ~18W</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Approx Price</span>
+                <span class="spec-value">$150 – $169</span>
+            </div>
+        </div>
+
+        <p><strong>Why for Jellyfin?</strong> The extra 2.5" slot means you can store your movies directly inside the box without needing external USB drives.</p>
+    </div>
+
+    <div class="product-card">
+        <h3>2. GMKtec NucBox G3 (The Budget Choice)</h3>
+
+        <p><strong>Best For :</strong> Students and budget hunters.</p>
+
+        <p>This is functionally identical to the Beelink S12 Pro but comes in a cheaper plastic shell. If you are going to hide your server in a cupboard, save the $30 and get this. Note that the fan can be slightly audible under heavy transcoding loads.</p>
+
+        <div style="margin: 20px 0;">
+            <div class="spec-row">
+                <span class="spec-label">CPU</span>
+                <span class="spec-value">Intel N100</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">GPU</span>
+                <span class="spec-value">Intel UHD</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">RAM</span>
+                <span class="spec-value">8GB or 16GB DDR4 (Soldered or Single Slot depending on batch)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Storage</span>
+                <span class="spec-value">256GB/512GB M.2 NVMe</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Networking</span>
+                <span class="spec-value">1x 2.5 Gigabit Ethernet (Faster than Beelink)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Power Consumption</span>
+                <span class="spec-value">Idle: ~5W | Max: ~15W</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Approx Price</span>
+                <span class="spec-value">$120 – $139</span>
+            </div>
+        </div>
+
+        <p><strong>Why for Jellyfin?</strong> It has a 2.5GbE LAN port. If you have a modern router, your file transfers (uploading movies to the server) will be 2.5x faster than on the Beelink.</p>
+    </div>
+
+    <div class="product-card">
+        <h3>3. Minisforum UN100D (The Network Pro)</h3>
+
+        <p><strong>Best For :</strong> Users who also want to run a Router/Firewall (pfSense).</p>
+
+        <p>The UN100D is unique because it can be powered via USB-C (so you can use a phone charger) and has Dual LAN ports. This allows you to use it as a router AND a Jellyfin server simultaneously.</p>
+
+        <div style="margin: 20px 0;">
+            <div class="spec-row">
+                <span class="spec-label">CPU</span>
+                <span class="spec-value">Intel N100</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">GPU</span>
+                <span class="spec-value">Intel UHD</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">RAM</span>
+                <span class="spec-value">8GB or 16GB LPDDR5 (Soldered - Not upgradeable)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Storage</span>
+                <span class="spec-value">M.2 NVMe SSD + 2.5" SATA Slot</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Networking</span>
+                <span class="spec-value">2x 2.5 Gigabit Ethernet Ports</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Power Supply</span>
+                <span class="spec-value">USB-C PD (Power Delivery)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Approx Price</span>
+                <span class="spec-value">$170 – $190</span>
+            </div>
+        </div>
+
+        <p><strong>Why for Jellyfin?</strong> LPDDR5 RAM is faster than the DDR4 in the Beelink, making the UI slightly snappier when loading heavy metadata/posters.</p>
+    </div>
+
+    <div class="product-card">
+        <h3>4. Chuwi LarkBox X (The Aesthetic Pick)</h3>
+
+        <p><strong>Best For :</strong> People putting the server on a desk.</p>
+
+        <p>Most mini PCs are boring black boxes. The LarkBox X is usually white/silver and looks like a premium audio accessory. It uses LPDDR5 RAM which is faster, but be careful—it is soldered, so you cannot upgrade it later.</p>
+
+        <div style="margin: 20px 0;">
+            <div class="spec-row">
+                <span class="spec-label">CPU</span>
+                <span class="spec-value">Intel N100</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">GPU</span>
+                <span class="spec-value">Intel UHD</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">RAM</span>
+                <span class="spec-value">12GB LPDDR5 (Soldered)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Storage</span>
+                <span class="spec-value">512GB M.2 NVMe (No 2.5" Slot usually)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Networking</span>
+                <span class="spec-value">2x Gigabit Ethernet</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Cooling</span>
+                <span class="spec-value">Larger fan, very quiet</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Approx Price</span>
+                <span class="spec-value">$140 – $160</span>
+            </div>
+        </div>
+
+        <p><strong>Why for Jellyfin?</strong> The 12GB RAM is a "sweet spot." It's more than the basic 8GB, allowing you to create a RAM-Disk for transcoding (saving wear and tear on your SSD).</p>
+    </div>
+
+    <div class="product-card">
+        <h3>5. Trigkey Green G5 (The Beelink Clone)</h3>
+
+        <p><strong>Best For :</strong> Deal hunters.</p>
+
+        <p>Trigkey is effectively a sister brand to Beelink. The internal motherboards are often identical. The Green G5 is frequently on "Flash Sale" on Amazon for $10–$20 less than the Beelink S12 Pro.</p>
+
+        <div style="margin: 20px 0;">
+            <div class="spec-row">
+                <span class="spec-label">CPU</span>
+                <span class="spec-value">Intel N100</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">GPU</span>
+                <span class="spec-value">Intel UHD</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">RAM</span>
+                <span class="spec-value">16GB DDR4 or DDR5 (Varies by region)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Storage</span>
+                <span class="spec-value">500GB NVMe + 2.5" Expansion Slot</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Networking</span>
+                <span class="spec-value">1x 2.5 Gigabit Ethernet</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Approx Price</span>
+                <span class="spec-value">$130 – $150</span>
+            </div>
+        </div>
+
+        <p><strong>Why for Jellyfin?</strong> It's the cheapest way to get the "Beelink experience." If the S12 Pro is out of stock or expensive, buy this.</p>
+    </div>
+
+    <h2>Specs Comparison</h2>
+
+    <table class="specs-table">
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>CPU</th>
+                <th>RAM Type</th>
+                <th>2.5" Drive Slot?</th>
+                <th>LAN Speed</th>
+                <th>Best For...</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Beelink S12 Pro</strong></td>
+                <td>N100</td>
+                <td>DDR4 (Slot)</td>
+                <td>✅ Yes</td>
+                <td>1 Gbps</td>
+                <td>Reliability</td>
+            </tr>
+            <tr>
+                <td><strong>GMKtec G3</strong></td>
+                <td>N100</td>
+                <td>DDR4</td>
+                <td>❌ No</td>
+                <td>2.5 Gbps</td>
+                <td>Budget / Speed</td>
+            </tr>
+            <tr>
+                <td><strong>Minisforum UN100D</strong></td>
+                <td>N100</td>
+                <td>LPDDR5 (Soldered)</td>
+                <td>✅ Yes</td>
+                <td>Dual 2.5 Gbps</td>
+                <td>Networking</td>
+            </tr>
+            <tr>
+                <td><strong>Chuwi LarkBox X</strong></td>
+                <td>N100</td>
+                <td>LPDDR5 (Soldered)</td>
+                <td>❌ No</td>
+                <td>Dual 1 Gbps</td>
+                <td>Design</td>
+            </tr>
+            <tr>
+                <td><strong>Trigkey Green G5</strong></td>
+                <td>N100</td>
+                <td>DDR4/5</td>
+                <td>✅ Yes</td>
+                <td>2.5 Gbps</td>
+                <td>Backup Choice</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="highlight-box">
+        <strong>Pro Tip:</strong> All these models run on 12V DC power. This means if you have a UPS (Uninterruptible Power Supply), they will stay online even during power outages for hours, unlike a full desktop PC.
+    </div>
+
+    <h2>Quick Setup Guide: How to Start</h2>
+
+    <p>Once your Mini PC arrives, don't keep Windows on it. Windows uses too much RAM.</p>
+
+    <ol>
+        <li><strong>Download "Ubuntu Server" or "Debian"</strong> (It's free).</li>
+        <li><strong>Flash it to a USB stick</strong> using a tool called BalenaEtcher.</li>
+        <li><strong>Install Docker.</strong> (This sounds scary, but it's just one command line).</li>
+        <li><strong>Install Jellyfin.</strong></li>
+    </ol>
+
+    <h2>People Also Ask (FAQ)</h2>
+    <p>Common questions about building a Jellyfin media server in 2026.</p>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <h3>Why is the Intel N100 considered the best budget choice for Jellyfin in 2026?</h3>
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            <p>The Intel N100 is the "gold standard" because it includes the Intel Quick Sync video engine. For under $160, it can handle multiple simultaneous 4K HDR transcodes while consuming less than 15W of power.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <h3>Can a Mini PC handle 4K HDR tone-mapping in Jellyfin?</h3>
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            <p>Yes, provided it has an Intel CPU with integrated UHD graphics (Gen 12/Xe architecture or newer). Models like the N100 or N150 can perform hardware-accelerated HDR-to-SDR tone-mapping flawlessly.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <h3>Do I need 16GB of RAM for a dedicated Jellyfin server?</h3>
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            <p>While 8GB is sufficient for basic Linux streaming, 16GB is highly recommended if you run Windows 11 or use Docker containers like Sonarr and Radarr. It also allows for a RAM-Disk to save SSD wear.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <h3>Why is my Jellyfin server buffering/stuttering on an Intel N100?</h3>
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            <p>If your N100 is hitting 100% CPU usage, Hardware Acceleration is likely disabled. You must enable "Intel QSV" in the Jellyfin Playback settings, otherwise, the server uses software transcoding which is too heavy for the CPU.</p>
+        </div>
+    </div>
+
+    <div class="cta-box">
+        <p><strong>Want a full step-by-step tutorial on the installation?</strong> Let me know in the comments below!</p>
+    </div>
+
+    <h2>Recommendations</h2>
+
+    <p>Building a home media server is the best way to take back control of your data in 2026.</p>
+
+    <ul>
+        <li><strong>Buy the Beelink S12 Pro</strong> if you want a machine that "just works" and looks good.</li>
+        <li><strong>Buy the GMKtec G3</strong> if you want the best performance-per-dollar ratio.</li>
+    </ul>
+
+    <h3 style="font-size: 1.3em; color: var(--primary); margin-top: 30px;">Stop renting your entertainment. Start owning it.</h3>
+
+    <hr style="margin: 60px 0; border: none; height: 1px; background: var(--border);">
+
+    <div style="text-align: center; padding: 40px 0;">
+        <h3>More Tech Guides</h3>
+        <p>Check out our full blog for more technology and setup guides.</p>
+        <a href="index.html" class="back-to-blog" style="margin-top: 20px;">← Back to Blog</a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">SetupNotes</h3>
+                <p class="footer-description">Your one-stop platform for downloading NCERT books PDF. Access complete books and chapter-wise materials for classes 1-12.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook" class="social-link">f</a>
+                    <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+                    <a href="#" aria-label="LinkedIn" class="social-link">in</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Classes</a></li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-heading">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="blog/index.html">Blog</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html">Support</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-heading">Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="terms.html">Disclaimer</a></li>
+                    <li><a href="privacy-policy.html">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 SetupNotes. This website provides links to official NCERT resources.</p>
+            <p class="footer-credit">Designed with care for students</p>
+        </div>
+    </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
