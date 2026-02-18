@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+Sitemap: https://setunotes.com/sitemap.xml
+Sitemap: https://setunotes.com/blog/sitemap.xml
