@@ -2,7 +2,7 @@ const CACHE_NAME = "ncert-images-cache-v1";
 
 // Only cache images
 const IMAGE_ASSETS = [
-  "/favicon.ico"
+  "/favicon.svg"
 ];
 
 // Install - Only cache image assets
