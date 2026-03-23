@@ -7,5 +7,32 @@
     "category": "Tech Guide",
     "image": "images/Best-mini-pc-for-jellyfin-server-2026.png",
     "excerpt": "In 2026, you can get a tiny computer that is faster than a Pi, uses almost zero electricity, and handles multiple 4K streams flawlessly—all for under $180...."
-  }
+  },
+    {
+    "id": 2,
+    "title": "Best Mini PCs to Run Gemma 3 27B Locally ",
+    "slug": "What-is-the-best-Mini-PC-for-Gemma-3",
+    "date": "March 1, 2026",
+    "category": "AI Guide",
+    "image": "images/What-is-the-best-Mini-PC-for-Gemma-3.png",
+    "excerpt": " Mini PC with AMD Ryzen and 32 GB DDR5 can run Gemma 3 27B locally via Ollama — private, free, and surprisingly fast...."
+  },
+  {
+  "id": 3,
+  "title": "DeepSeek R1 vs Llama 4 Scout: Which Is Best for a Local Coding Assistant in 2026?",
+  "slug": "deepseek-r1-vs-llama4-scout-local-coding-assistant",
+  "date": "March 15, 2026",
+  "category": "AI Guide",
+  "image": "images/deepseek-r1-vs-llama4-scout-local-coding-assistant.jpg",
+  "excerpt": "Your code should never leave your machine. We compare DeepSeek R1 distilled vs Llama 4 Scout across debugging, context window, multimodal input, and RAM requirements to find the best local coding AI...."
+},
+{
+  "id": 4,
+  "title": "Running DeepSeek R1 Distill on a 16GB VRAM GPU: The Complete 2026 Guide",
+  "slug": "running-deepseek-r1-distill-16gb-vram-gpu",
+  "date": "March 23, 2026",
+  "category": "AI Guide",
+  "image": "images/running-deepseek-r1-distill-16gb-vram-gpu.png",
+  "excerpt": "Got a 16GB VRAM GPU? The R1-Distill-14B fits perfectly at Q4_K_M quantization. Here is the full setup guide — Modelfiles, context tuning, GPU benchmarks, and how to squeeze the 32B with CPU offloading...."
+}
 ]

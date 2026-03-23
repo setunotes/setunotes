@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Best Mini PC for Gemma 3 27B Inference 2026: Top Picks for Local AI</title>
+    <meta name="description" content="best Mini PCs for running Gemma 3 27B locally in 2026. Compare Minisforum UM890 Pro, Beelink SER9, ACEMAGIC M5 and more. Learn RAM, iGPU, and OCuLink essentials.">
+    <meta name="keywords" content="Gemma 3 27B, local LLM inference, Mini PC 2026, AMD Ryzen 8945HS, Radeon 780M, Ollama, Minisforum UM890 Pro, Beelink SER9, home AI server, iGPU inference">
+    <meta name="author" content="Setu Notes">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Best Mini PC for Gemma 3 27B Inference 2026: Top Picks for Local AI">
+    <meta property="og:description" content="Affordable Mini PCs that can run Gemma 3 27B locally using Ollama.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://setunotes.com/blog/What-is-the-best-Mini-PC-for-Gemma-3.html">
+    <meta property="og:image" content="https://setunotes.com/blog/images/What-is-the-best-Mini-PC-for-Gemma-3.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://setunotes.com/blog/What-is-the-best-Mini-PC-for-Gemma-3.html">
+    <link rel="stylesheet" href="../style.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Best Mini PC for Gemma 3 27B Inference 2026: Top Picks for Local AI",
+      "description": "best mini PC for running Gemma 3 27B locally with AMD iGPU or OCuLink eGPU support",
+      "datePublished": "2026-03-01",
+      "dateModified": "2026-03-01",
+      "author": {
+        "@type": "Organization",
+        "@name": "Setu Notes"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@name": "Setu Notes",
+        "logo": {
+          "@type": "ImageObject",
+          "@url": "https://setunotes.com/logo.png"
+        }
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How much RAM do I need to run Gemma 3 27B locally?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gemma 3 27B requires at least 18GB of free RAM for standard inference. For comfortable operation alongside an OS and other tools, 32GB is the recommended minimum. With the QAT (Quantization-Aware Training) version, you can get it running on 16–20GB."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Can an AMD iGPU run Gemma 3 27B?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. AMD's Radeon 780M integrated graphics (found in Ryzen 7000/8000 series) shares system DDR5 RAM as VRAM. With 32–64GB of system RAM, Ollama can offload model layers to the iGPU, achieving 8–15 tokens per second on the QAT version of Gemma 3 27B."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is OCuLink and why does it matter for local LLMs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "OCuLink is a 64Gbps external PCIe connection found on premium mini PCs. It lets you attach an external GPU enclosure with a card like an RTX 4070. For Gemma 3 27B, this can boost inference speed from ~10 tokens/sec on an iGPU to 40–60+ tokens/sec."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Why is my Gemma 3 27B inference slow or crashing on a Mini PC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The most common causes are: (1) Not enough RAM — the model starts swapping to disk, killing performance. (2) GPU offloading is disabled in Ollama — run 'ollama run gemma3:27b' and check that layers are loading to GPU. (3) You are using the full-precision model instead of the smaller QAT version."
+        }
+      }]
+    }
+    </script>
+
+    <style>
+        .article-header {
+            background: var(--gradient);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+
+        .article-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        .article-content {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .article-content h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+
+        .article-content h3 {
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .article-content p {
+            margin-bottom: 16px;
+            font-size: 1.05em;
+            color: var(--text);
+        }
+
+        .featured-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.95em;
+        }
+
+        .specs-table th {
+            background: var(--primary);
+            color: white;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .specs-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .specs-table tr:hover {
+            background: var(--card);
+        }
+
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 24px 0;
+        }
+
+        .product-card h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .spec-value {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .rule-text {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #ef4444;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+            border-left: 4px solid #ef4444;
+        }
+
+        .back-to-blog {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: 0.3s ease;
+        }
+
+        .back-to-blog:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .cta-box p {
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .tier-budget { background: rgba(34,197,94,0.15); color: #16a34a; }
+        .tier-midrange { background: rgba(99,102,241,0.15); color: #4f46e5; }
+        .tier-premium { background: rgba(239,68,68,0.15); color: #dc2626; }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 1.8em; }
+            .article-meta { flex-direction: column; align-items: flex-start; }
+            .specs-table { font-size: 0.85em; }
+            .specs-table th, .specs-table td { padding: 10px 8px; }
+            .rule-text { font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-flex">
+        <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm6 2H6v3h4V5zm8 0h-4v3h4V5zm-12 5H4v9h2v-9zm4 0H8v9h4v-9zm8 0h-4v9h4v-9z"/>
+            </svg>
+            <span class="logo-text"><a href="../index.html" style="text-decoration: none;">Setu Notes</a></span>
+        </div>
+
+        <nav class="nav">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../about.html" class="nav-link">About</a>
+            <a href="index.html" class="nav-link active">Blog</a>
+            <a href="../faq.html" class="nav-link">FAQ</a>
+            <a href="../contact.html" class="nav-link">Contact</a>
+            <button id="darkToggle" class="dark-btn nav-dark-btn" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Mobile Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../about.html" class="nav-link">About</a>
+        <a href="index.html" class="nav-link">Blog</a>
+        <a href="../faq.html" class="nav-link">FAQ</a>
+        <a href="../contact.html" class="nav-link">Contact</a>
+        <a href="../privacy-policy.html" class="nav-link">Privacy</a>
+        <a href="../terms.html" class="nav-link">Terms</a>
+    </nav>
+</header>
+
+<div class="breadcrumb">
+    <div class="container">
+        <a href="../index.html">Home</a> / <a href="index.html">Blog</a> / Gemma 3 27B Mini PC Guide
+    </div>
+</div>
+
+<section class="article-header">
+    <div class="container">
+        <a href="index.html" class="back-to-blog">← Back to Blog</a>
+        <h1>Best Mini PC for Gemma 3 27B Inference in 2026: Run a 27B AI Model at Home</h1>
+        <div class="article-meta">
+            <span>📅 Updated: March 2026</span>
+            <span>⏱️ 14 min read</span>
+            <span>🤖 AI Guide</span>
+        </div>
+    </div>
+</section>
+
+<main class="container article-content">
+
+    <img src="images/What-is-the-best-Mini-PC-for-Gemma-3.png" alt="Best Mini PC for Gemma 3 27B Inference 2026" class="featured-image">
+
+    <p>You have probably heard the buzz: Google's <strong>Gemma 3 27B</strong> is one of the most capable open-weight AI models ever released. It outperforms models many times its size, supports vision (images + text), understands 140+ languages, and has a massive 128,000-token context window.</p>
+
+    <p>And the best part? <strong>You can run it entirely on your own hardware, for free, with zero API fees.</strong></p>
+
+    <p>But here is the challenge: a 27-billion parameter model is not a small model. Your old laptop will struggle. A Raspberry Pi is completely out of the question. You need a machine that can fit the model weights into fast memory and actually move data through the neural network at a usable speed.</p>
+
+    <p>The good news: in 2026, you can get a Mini PC capable of running Gemma 3 27B comfortably for <strong>under $500</strong>.</p>
+
+    <p style="text-align: center; font-style: italic; margin: 40px 0;">Here is the ultimate guide to choosing the right Mini PC for local Gemma 3 27B inference.</p>
+
+    <h2>Why Gemma 3 27B Is the Model Worth Running Locally</h2>
+
+    <div class="highlight-box">
+        <strong>The most important fact:</strong> Gemma 3 27B ranks among the top models on Chatbot Arena while requiring only a <em>single GPU</em> — most competing models of similar quality need 8 to 32 GPUs in a data center.
+    </div>
+
+    <p>Released by Google in March 2025, Gemma 3 27B was trained on 14 trillion tokens using the same research that powers Google's Gemini 2.0 models. What makes it special for home users?</p>
+
+    <ul>
+        <li><strong>Multimodal:</strong> It can analyze images as well as text — useful for describing photos, reading charts, or coding from screenshots.</li>
+        <li><strong>Long context:</strong> A 128K token context window means it can read entire books, long PDFs, or massive codebases in one go.</li>
+        <li><strong>Efficient architecture:</strong> Its unique 5:1 local-to-global attention ratio cuts memory usage dramatically — KV-cache is only ~8% of model size at 32K tokens, making 128K context feasible on consumer hardware.</li>
+        <li><strong>QAT versions available:</strong> Quantization-Aware Training (QAT) variants provide nearly identical quality at up to 3× less memory, making 27B realistic on a 32GB Mini PC.</li>
+    </ul>
+
+    <h2>The Core Problem: RAM Is Everything</h2>
+
+    <p>To understand why Mini PC selection matters, you need to understand the number one rule of local LLM inference:</p>
+
+    <div class="rule-text">
+        Rule #1: The model weights must fit in RAM. If they don't, your PC swaps to disk and inference becomes 100× slower — effectively unusable.
+    </div>
+
+    <p>Gemma 3 27B in standard precision requires around 60 GB of storage and <strong>at least 18 GB of free RAM</strong> at minimum to run. The QAT (quantized) version shrinks this to roughly <strong>16–20 GB</strong> of required RAM, making 32 GB systems viable.</p>
+
+    <p>But RAM alone isn't enough. The speed at which data moves between your RAM and processor is called <strong>memory bandwidth</strong>. This is the single biggest bottleneck for local inference. Modern DDR5 RAM is roughly 2× faster than DDR4 — which directly translates to 2× more tokens per second.</p>
+
+    <h3>iGPU Inference: The Game Changer for Mini PCs</h3>
+
+    <p>Modern AMD Ryzen 7000 and 8000 series chips use a <strong>Unified Memory Architecture</strong>. This means your system RAM doubles as the GPU's VRAM with zero transfer overhead. An AMD Mini PC with 32–64 GB of DDR5 RAM effectively gives its integrated Radeon 780M GPU a massive pool of fast video memory.</p>
+
+    <p>When you run Gemma 3 27B through Ollama on such a machine, the tool automatically offloads as many model layers to the iGPU as possible. The result: speeds of <strong>8–15 tokens per second</strong> on the QAT model — perfectly conversational for a single user.</p>
+
+    <h3>The Encoder Comparison: Why AMD APUs Win in 2026</h3>
+
+    <table class="specs-table">
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>AMD Ryzen 8000 (iGPU)</th>
+                <th>Intel Core Ultra (iGPU)</th>
+                <th>Discrete GPU (eGPU)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Unified Memory?</strong></td>
+                <td>⭐⭐⭐⭐⭐ Yes (DDR5)</td>
+                <td>⭐⭐⭐ Partial (Arc)</td>
+                <td>⭐⭐ No (dedicated VRAM)</td>
+            </tr>
+            <tr>
+                <td><strong>Cost</strong></td>
+                <td>⭐⭐⭐⭐ $350–$500</td>
+                <td>⭐⭐⭐ $400–$600</td>
+                <td>⭐⭐ $800–$1200+</td>
+            </tr>
+            <tr>
+                <td><strong>Tokens/sec (27B QAT)</strong></td>
+                <td>⭐⭐⭐⭐ 8–15 t/s</td>
+                <td>⭐⭐⭐ 5–10 t/s</td>
+                <td>⭐⭐⭐⭐⭐ 40–80 t/s</td>
+            </tr>
+            <tr>
+                <td><strong>Power Draw (idle)</strong></td>
+                <td>⭐⭐⭐⭐⭐ ~10W</td>
+                <td>⭐⭐⭐⭐ ~12W</td>
+                <td>⭐⭐ 50–200W</td>
+            </tr>
+            <tr>
+                <td><strong>For Home AI Server?</strong></td>
+                <td>⭐⭐⭐⭐⭐ Perfect</td>
+                <td>⭐⭐⭐ Good</td>
+                <td>⭐⭐ Expensive/Loud</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="rule-text">
+        Rule #2: For Gemma 3 27B on a budget, always buy an AMD Ryzen 7000/8000 Mini PC with at least 32 GB of DDR5 RAM.
+    </div>
+
+    <h2>The Top 5 Mini PCs for Gemma 3 27B in 2026</h2>
+
+    <div class="product-card">
+        <span class="tier-badge tier-premium">🏆 Top Pick</span>
+        <h3>1. Minisforum UM890 Pro (The Overall Winner)</h3>
+
+        <p><strong>Best For:</strong> Users who want the absolute best iGPU inference performance in a Mini PC.</p>
+
+        <p>The Minisforum UM890 Pro is the powerhouse of this list. Its AMD Ryzen 9 8945HS processor with Zen 4 architecture, combined with the AMD Radeon 780M integrated GPU and support for up to 96 GB DDR5 RAM, makes it the undisputed king of Mini PC AI inference in 2026. The Cold Wave 2.2 cooling system keeps the chip running at full boost clocks even under sustained model inference loads — something cheaper coolers fail at.</p>
+
+        <p>Critically, it features an <strong>OCuLink port</strong>. This 64 Gbps connection lets you plug in an external GPU enclosure later if you outgrow the iGPU — a future-proof upgrade path no other Mini PC on this list offers.</p>
+
+        <div style="margin: 20px 0;">
+            <div class="spec-row">
+                <span class="spec-label">CPU</span>
+                <span class="spec-value">AMD Ryzen 9 8945HS (8 Cores / 16 Threads, up to 5.2 GHz)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">GPU (iGPU)</span>
+                <span class="spec-value">AMD Radeon 780M — RDNA 3, 12 Compute Units</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">RAM</span>
+                <span class="spec-value">32 GB DDR5-5600 (2 SO-DIMM slots, upgradeable to 96 GB)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Storage</span>
+                <span class="spec-value">1 TB PCIe 4.0 NVMe SSD + 2nd M.2 Slot</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Networking</span>
+                <span class="spec-value">Dual 2.5 Gigabit Ethernet + Wi-Fi 6E</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Expansion</span>
+                <span class="spec-value">OCuLink (64 Gbps) + 2× USB4 / Thunderbolt 4</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Power Consumption</span>
+                <span class="spec-value">Idle: ~10W | Inference Load: ~35–45W</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Approx Price</span>
+                <span class="spec-value">$430 – $499 (32 GB config)</span>
+            </div>
+        </div>
+
+        <p><strong>Why for Gemma 3 27B?</strong> With 32 GB DDR5, the QAT model loads fully into RAM. Ollama offloads layers to the Radeon 780M iGPU automatically, hitting 10–15 tokens/sec. Upgrade to 64 GB and you can run the full-precision model. The OCuLink port means this machine can scale with you for years.</p>
+    </div>
+
+    <div class="product-card">
+        <span class="tier-badge tier-midrange">⚡ Best Value</span>
+        <h3>2. Beelink SER9 (The Performance-Per-Dollar King)</h3>
+
+        <p><strong>Best For:</strong> Users who want flagship performance without paying the Minisforum premium.</p>
+
+        <p>The Beelink SER9 uses the same AMD Ryzen 9 7940HS or 8945HS chip as the UM890 Pro in many configurations, but undercuts the price by $100–$150. Beelink has significantly improved their build quality over the past two years, and the SER9 is a reliable, well-reviewed machine. The only tradeoff is the absence of an OCuLink port — making it slightly less future-proof for eGPU expansion. It still has USB4 for a Thunderbolt-based GPU enclosure (with ~15–20% bandwidth overhead vs OCuLink).</p>
+
+        <div style="margin: 20px 0;">
+            <div class="spec-row">
+                <span class="spec-label">CPU</span>
+                <span class="spec-value">AMD Ryzen 9 7940HS / 8945HS (8 Cores, up to 5.2 GHz)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">GPU (iGPU)</span>
+                <span class="spec-value">AMD Radeon 780M (RDNA 3)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">RAM</span>
+                <span class="spec-value">32 GB DDR5-5600 (2× SO-DIMM, upgradeable to 64 GB)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Storage</span>
+                <span class="spec-value">1 TB PCIe 4.0 NVMe + 2nd M.2 Slot</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Networking</span>
+                <span class="spec-value">Dual 2.5 Gigabit Ethernet + Wi-Fi 6E</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Expansion</span>
+                <span class="spec-value">USB4 (40 Gbps) for eGPU enclosures</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Power Consumption</span>
+                <span class="spec-value">Idle: ~10W | Inference Load: ~30–42W</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Approx Price</span>
+                <span class="spec-value">$329 – $399 (32 GB config)</span>
+            </div>
+        </div>
+
+        <p><strong>Why for Gemma 3 27B?</strong> Functionally identical inference performance to the UM890 Pro for ~$100 less. If you never plan to attach an eGPU, this is the smarter buy. The 32 GB DDR5 is sufficient for the QAT model; upgrading to 64 GB unlocks the full-precision Gemma 3 27B.</p>
+    </div>
+
+    <div class="product-card">
+        <span class="tier-badge tier-premium">🚀 Power User</span>
+        <h3>3. Minisforum AI X1 Pro (The Future-Proof Powerhouse)</h3>
+
+        <p><strong>Best For:</strong> Power users and home lab enthusiasts who want maximum scalability.</p>
+
+        <p>The AI X1 Pro is Minisforum's flagship in 2026, built around the AMD Ryzen AI 9 HX 370 with dedicated NPU (Neural Processing Unit) acceleration. It supports up to <strong>128 GB of RAM</strong> across 3 M.2 slots, OCuLink at 64 Gbps, and dual 2.5GbE networking — a full workstation packed into a Mini ITX chassis. This machine can run Gemma 3 27B at full precision without breaking a sweat, and the built-in 135W power supply means it can power a serious eGPU simultaneously.</p>
+
+        <div style="margin: 20px 0;">
+            <div class="spec-row">
+                <span class="spec-label">CPU</span>
+                <span class="spec-value">AMD Ryzen AI 9 HX 370 (12 Cores, up to 5.1 GHz)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">GPU (iGPU)</span>
+                <span class="spec-value">AMD Radeon 890M + Dedicated NPU (38 TOPS)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">RAM</span>
+                <span class="spec-value">Up to 128 GB DDR5 (SO-DIMM + M.2 expansion)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Storage</span>
+                <span class="spec-value">3× M.2 NVMe Slots (PCIe 4.0)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Networking</span>
+                <span class="spec-value">Dual 2.5 Gigabit Ethernet + Wi-Fi 7</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Expansion</span>
+                <span class="spec-value">OCuLink (64 Gbps) + USB4 Thunderbolt</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Power Supply</span>
+                <span class="spec-value">Built-in 135W (supports heavy eGPU loads)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Approx Price</span>
+                <span class="spec-value">$549 – $649 (32 GB config)</span>
+            </div>
+        </div>
+
+        <p><strong>Why for Gemma 3 27B?</strong> The Radeon 890M is faster than the 780M. More importantly, up to 128 GB of RAM means you can load multiple large models simultaneously — Gemma 3 27B plus Llama 3 70B if you're feeling adventurous. This is the machine you buy when you're serious about local AI.</p>
+    </div>
+
+    <div class="product-card">
+        <span class="tier-badge tier-midrange">💻 Mid-Range</span>
+        <h3>4. ACEMAGIC M5 (The Intel Alternative)</h3>
+
+        <p><strong>Best For:</strong> Users in Intel's ecosystem who also need heavy multi-core CPU work alongside inference.</p>
+
+        <p>The ACEMAGIC M5 launched recently with an Intel Core i5-14500HX — a 14-core, 20-thread chip that provides exceptional multi-threaded CPU performance. For pure Gemma 3 27B inference speed, it trails the AMD options (Intel's Arc iGPU does not match AMD's Radeon 780M for LLM layer offloading). However, if you need to run simultaneous tasks like compiling code, running Docker containers, and inference at the same time, the M5's wider core count shines. It also benefits from Intel's mature OneAPI ecosystem.</p>
+
+        <div style="margin: 20px 0;">
+            <div class="spec-row">
+                <span class="spec-label">CPU</span>
+                <span class="spec-value">Intel Core i5-14500HX (14 Cores / 20 Threads, up to 4.9 GHz)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">GPU (iGPU)</span>
+                <span class="spec-value">Intel Arc integrated (Xe2 architecture)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">RAM</span>
+                <span class="spec-value">32 GB DDR5 (Upgradeable)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Storage</span>
+                <span class="spec-value">1 TB NVMe PCIe 4.0</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Networking</span>
+                <span class="spec-value">2.5 Gigabit Ethernet + Wi-Fi 6E</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">CPU Cores</span>
+                <span class="spec-value">14 Cores (6P + 8E) — Best multi-core in this list</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Approx Price</span>
+                <span class="spec-value">$449 – $549 (introductory pricing)</span>
+            </div>
+        </div>
+
+        <p><strong>Why for Gemma 3 27B?</strong> CPU-only inference on 14 cores with 32 GB DDR5 achieves around 6–10 tokens per second on the QAT model. Slower than AMD for GPU-offloaded inference, but if you also plan to run heavy Docker workloads, build pipelines, or RAG servers alongside the model, the extra cores pay dividends.</p>
+    </div>
+
+    <div class="product-card">
+        <span class="tier-badge tier-budget">💰 Budget Pick</span>
+        <h3>5. Minisforum UM790 Pro (The Mature & Reliable Choice)</h3>
+
+        <p><strong>Best For:</strong> Deal hunters and users who value a battle-tested, mature platform with proven BIOS stability.</p>
+
+        <p>The UM790 Pro uses the previous-generation Ryzen 9 7940HS, which is technically a step behind the 8945HS but delivers 90% of the real-world performance in most tasks. It has been on the market longer, meaning BIOS updates have refined performance, driver maturity is excellent, and the community knowledge base is huge. If the UM890 Pro is out of stock or too expensive, this is the first machine you should look at.</p>
+
+        <div style="margin: 20px 0;">
+            <div class="spec-row">
+                <span class="spec-label">CPU</span>
+                <span class="spec-value">AMD Ryzen 9 7940HS (8 Cores / 16 Threads, up to 5.2 GHz)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">GPU (iGPU)</span>
+                <span class="spec-value">AMD Radeon 780M (RDNA 3, 12 CUs)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">RAM</span>
+                <span class="spec-value">32 GB DDR5-5600 (2× SO-DIMM, upgradeable to 64 GB)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Storage</span>
+                <span class="spec-value">1 TB PCIe 4.0 NVMe + 2nd M.2 Slot</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Networking</span>
+                <span class="spec-value">Dual 2.5 Gigabit Ethernet + Wi-Fi 6E</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Expansion</span>
+                <span class="spec-value">USB4 (40 Gbps)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Approx Price</span>
+                <span class="spec-value">$299 – $369 (frequently on sale)</span>
+            </div>
+        </div>
+
+        <p><strong>Why for Gemma 3 27B?</strong> The Radeon 780M iGPU is identical in performance to the 8945HS version. You save $100–$130 versus the UM890 Pro and get a machine that has proven rock-solid reliability. The 32 GB DDR5 is sufficient for the QAT model today, and 64 GB is achievable with a RAM upgrade.</p>
+    </div>
+
+    <h2>Full Specs Comparison</h2>
+
+    <table class="specs-table">
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>CPU</th>
+                <th>iGPU</th>
+                <th>Max RAM</th>
+                <th>OCuLink?</th>
+                <th>27B QAT Speed*</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Minisforum UM890 Pro</strong></td>
+                <td>Ryzen 9 8945HS</td>
+                <td>Radeon 780M</td>
+                <td>96 GB</td>
+                <td>✅ Yes</td>
+                <td>~12–15 t/s</td>
+                <td>$430–$499</td>
+            </tr>
+            <tr>
+                <td><strong>Beelink SER9</strong></td>
+                <td>Ryzen 9 7940HS</td>
+                <td>Radeon 780M</td>
+                <td>64 GB</td>
+                <td>❌ No</td>
+                <td>~10–13 t/s</td>
+                <td>$329–$399</td>
+            </tr>
+            <tr>
+                <td><strong>Minisforum AI X1 Pro</strong></td>
+                <td>Ryzen AI 9 HX 370</td>
+                <td>Radeon 890M</td>
+                <td>128 GB</td>
+                <td>✅ Yes</td>
+                <td>~15–20 t/s</td>
+                <td>$549–$649</td>
+            </tr>
+            <tr>
+                <td><strong>ACEMAGIC M5</strong></td>
+                <td>Core i5-14500HX</td>
+                <td>Intel Arc</td>
+                <td>64 GB</td>
+                <td>❌ No</td>
+                <td>~6–10 t/s</td>
+                <td>$449–$549</td>
+            </tr>
+            <tr>
+                <td><strong>Minisforum UM790 Pro</strong></td>
+                <td>Ryzen 9 7940HS</td>
+                <td>Radeon 780M</td>
+                <td>64 GB</td>
+                <td>❌ No</td>
+                <td>~10–13 t/s</td>
+                <td>$299–$369</td>
+            </tr>
+        </tbody>
+    </table>
+    <p style="font-size: 0.9em; color: var(--text); opacity: 0.7;">*Token speeds are approximate figures for Gemma 3 27B QAT model via Ollama with iGPU offloading on 32 GB DDR5. Results vary by quantization level, OS, and configuration.</p>
+
+    <div class="highlight-box">
+        <strong>Pro Tip on OCuLink:</strong> Mini PCs with an OCuLink port (UM890 Pro, AI X1 Pro) are the best long-term investment. Plug in an eGPU enclosure with an RTX 4070 later, and your inference speed jumps from ~12 tokens/sec to 50–70+ tokens/sec on the full 27B model — turning a Mini PC into a near-workstation AI server.
+    </div>
+
+    <h2>How Much RAM Do You Actually Need?</h2>
+
+    <p>This is the most common question — and the answer depends on which version of Gemma 3 27B you plan to run.</p>
+
+    <table class="specs-table">
+        <thead>
+            <tr>
+                <th>Model Version</th>
+                <th>Approx. RAM Required</th>
+                <th>Recommended System RAM</th>
+                <th>Speed on 780M iGPU</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Gemma 3 27B (Full Precision)</td>
+                <td>~60 GB</td>
+                <td>64 GB minimum</td>
+                <td>~8–10 t/s</td>
+            </tr>
+            <tr>
+                <td>Gemma 3 27B Q4_K_M</td>
+                <td>~18 GB</td>
+                <td>32 GB recommended</td>
+                <td>~12–15 t/s</td>
+            </tr>
+            <tr>
+                <td>Gemma 3 27B QAT (Google official)</td>
+                <td>~16–20 GB</td>
+                <td>32 GB recommended</td>
+                <td>~10–14 t/s</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><strong>The practical recommendation:</strong> Buy a Mini PC with 32 GB of DDR5 and ensure it has upgradeable RAM slots. Start with the QAT or Q4 quantized version of the model. If you want the full experience later, upgrade to 64 GB.</p>
+
+    <h2>Quick Setup Guide: Running Gemma 3 27B with Ollama</h2>
+
+    <p>Once your Mini PC arrives, here is the fastest path to a working local AI:</p>
+
+    <ol>
+        <li><strong>Install Ubuntu 24.04 LTS</strong> (free download from ubuntu.com). It uses less RAM than Windows and the GPU drivers for AMD are built in.</li>
+        <li><strong>Install Ollama</strong> with one command:
+            <br><code style="background: var(--card); padding: 4px 8px; border-radius: 4px; font-size: 0.9em;">curl -fsSL https://ollama.com/install.sh | sh</code>
+        </li>
+        <li><strong>Pull the model:</strong>
+            <br><code style="background: var(--card); padding: 4px 8px; border-radius: 4px; font-size: 0.9em;">ollama pull gemma3:27b</code>
+            <br>(Or use the QAT version: <code style="background: var(--card); padding: 4px 8px; border-radius: 4px; font-size: 0.9em;">ollama pull gemma3:27b-instruct-q4_K_M</code>)
+        </li>
+        <li><strong>Run it:</strong>
+            <br><code style="background: var(--card); padding: 4px 8px; border-radius: 4px; font-size: 0.9em;">ollama run gemma3:27b</code>
+        </li>
+        <li><strong>Optional: Install Open WebUI</strong> for a ChatGPT-like browser interface:
+            <br><code style="background: var(--card); padding: 4px 8px; border-radius: 4px; font-size: 0.9em;">docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway ghcr.io/open-webui/open-webui:main</code>
+        </li>
+    </ol>
+
+    <div class="highlight-box">
+        <strong>Check if your iGPU is being used:</strong> Run <code>ollama ps</code> while a model is loaded. Look for "GPU" in the output. If it says "CPU only," check that your AMD ROCm drivers are installed and run <code>OLLAMA_GPU_OVERHEAD=0 ollama serve</code> to force GPU detection.
+    </div>
+
+    <h2>People Also Ask (FAQ)</h2>
+    <p>Common questions about running Gemma 3 27B locally on a Mini PC.</p>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <h3>How much RAM do I need to run Gemma 3 27B locally?</h3>
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            <p>Gemma 3 27B requires at least 18 GB of free RAM for the quantized version. For comfortable operation alongside an OS and other tools, 32 GB is the recommended minimum. With 64 GB you can run the full-precision model. Always buy a Mini PC with upgradeable RAM slots so you are not locked in.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <h3>Can an AMD iGPU run Gemma 3 27B?</h3>
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            <p>Yes. AMD's Radeon 780M integrated graphics in Ryzen 7000/8000 series mini PCs shares DDR5 system RAM as VRAM with zero transfer overhead. Ollama automatically offloads model layers to the iGPU. With 32 GB of DDR5, you can expect 10–15 tokens per second on the Q4 quantized version of Gemma 3 27B — perfectly conversational for a single user.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <h3>What is OCuLink and why does it matter for local LLMs?</h3>
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            <p>OCuLink is a 64 Gbps external PCIe interface found on premium mini PCs like the Minisforum UM890 Pro and AI X1 Pro. It lets you attach an external GPU enclosure containing a card like an RTX 4070 or RTX 4090. For Gemma 3 27B, this can jump inference speed from ~12 tokens/sec (iGPU) to 50–80+ tokens/sec — a dramatic upgrade with no need to buy a new computer.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <h3>Why is my Gemma 3 27B inference slow or crashing?</h3>
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            <p>The three most common causes are: (1) <strong>Insufficient RAM</strong> — the model starts swapping to disk, killing performance. Check your free RAM with <code>free -h</code> before loading the model. (2) <strong>GPU offloading is disabled</strong> — run <code>ollama ps</code> to verify layers are loading to GPU. (3) <strong>Using the wrong model version</strong> — start with the QAT or Q4_K_M quantized version, not the full 60 GB model, until you have 64 GB+ of RAM.</p>
+        </div>
+    </div>
+
+    <div class="cta-box">
+        <p><strong>Want a full step-by-step Ollama + Open WebUI setup tutorial with GPU passthrough?</strong> Let me know in the comments below!</p>
+    </div>
+
+    <h2>Final Recommendations</h2>
+
+    <p>Running Gemma 3 27B locally is now achievable on an affordable Mini PC in 2026. The model is remarkable — multimodal, long-context, private, and completely free. Here is the quick summary:</p>
+
+    <ul>
+        <li><strong>Buy the Minisforum UM890 Pro</strong> if you want the best iGPU inference, OCuLink for future eGPU expansion, and a machine that handles anything you throw at it.</li>
+        <li><strong>Buy the Beelink SER9</strong> if the UM890 Pro is out of budget — you get 90% of the performance for significantly less.</li>
+        <li><strong>Buy the Minisforum AI X1 Pro</strong> if you are serious about local AI and want the option of running multiple 27B+ models simultaneously.</li>
+        <li><strong>Buy the Minisforum UM790 Pro</strong> if you are a deal hunter — the same Radeon 780M iGPU, mature platform, and frequently discounted.</li>
+    </ul>
+
+    <p>In every case: make sure you get <strong>32 GB of DDR5 RAM minimum</strong>, buy a machine with <strong>upgradeable SO-DIMM slots</strong>, and run <strong>Linux + Ollama</strong> for the best performance.</p>
+
+    <h3 style="font-size: 1.3em; color: var(--primary); margin-top: 30px;">Stop paying API bills. Your data, your model, your machine.</h3>
+
+    <hr style="margin: 60px 0; border: none; height: 1px; background: var(--border);">
+
+    <div style="text-align: center; padding: 40px 0;">
+        <h3>More Tech Guides</h3>
+        <p>Check out our full blog for more technology and setup guides.</p>
+        <a href="index.html" class="back-to-blog" style="margin-top: 20px;">← Back to Blog</a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">Setu Notes</h3>
+                <p class="footer-description">Your one-stop platform for downloading NCERT books PDF. Access complete books and chapter-wise materials for classes 1-12.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook" class="social-link">f</a>
+                    <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+                    <a href="#" aria-label="LinkedIn" class="social-link">in</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Classes</a></li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-heading">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="blog/index.html">Blog</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html">Support</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-heading">Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="terms.html">Disclaimer</a></li>
+                    <li><a href="privacy-policy.html">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Setu Notes. This website provides links to official NCERT resources.</p>
+            <p class="footer-credit">Designed with care for students</p>
+        </div>
+    </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

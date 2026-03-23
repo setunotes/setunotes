@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Running DeepSeek R1 Distill on a 16GB VRAM GPU: Full Setup Guide 2026</title>
+    <meta name="description" content="Complete guide to running DeepSeek R1 distilled models on a 16GB VRAM GPU in 2026. Learn which models fit, token speeds, best GPUs, Ollama setup, Modelfile tuning, and how to squeeze the 32B with CPU offloading.">
+    <meta name="keywords" content="DeepSeek R1 distill 16GB VRAM, RTX 4060 Ti 16GB DeepSeek, RTX 4080 DeepSeek R1, local LLM 16GB GPU, Ollama DeepSeek setup, R1 Distill 14B benchmark, R1 Distill 32B offload, deepseek-r1:14b tokens per second">
+    <meta name="author" content="Setu Notes">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Running DeepSeek R1 Distill on a 16GB VRAM GPU: Full Setup Guide 2026">
+    <meta property="og:description" content="Got a 16GB VRAM GPU? Here is the complete guide to running DeepSeek R1 distilled models — which sizes fit, real benchmark speeds, and a step-by-step Ollama setup.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://setunotes.com/blog/running-deepseek-r1-distill-16gb-vram-gpu">
+    <meta property="og:image" content="https://setunotes.com/blog/images/running-deepseek-r1-distill-16gb-vram-gpu.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://setunotes.com/blog/running-deepseek-r1-distill-16gb-vram-gpu">
+    <link rel="stylesheet" href="../style.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Running DeepSeek R1 Distill on a 16GB VRAM GPU: Full Setup Guide 2026",
+      "description": "A practical, hardware-tested guide to running DeepSeek R1 distilled models on 16GB VRAM consumer GPUs with Ollama in 2026",
+      "datePublished": "2026-03-23",
+      "dateModified": "2026-03-23",
+      "author": {
+        "@type": "Organization",
+        "@name": "Setu Notes"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@name": "Setu Notes",
+        "logo": {
+          "@type": "ImageObject",
+          "@url": "https://setunotes.com/logo.png"
+        }
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Which DeepSeek R1 distill model should I run on a 16GB VRAM GPU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The R1-Distill-Qwen-14B at Q4_K_M quantization is the sweet spot. It uses roughly 9 GB of VRAM, leaving headroom for the KV cache and OS. This means it runs entirely on the GPU with no CPU offloading, giving you 25–45 tokens per second depending on your specific card."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Can I run DeepSeek R1 Distill 32B on a 16GB VRAM GPU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, but with a catch. The 32B model at Q4_K_M quantization is roughly 19–20 GB, so about 4 GB of layers must offload to system RAM. You will need at least 32 GB of system RAM alongside the GPU. Expect a significant speed drop — roughly 8–12 tokens per second due to the CPU-GPU data transfer bottleneck."
+        }
+      }, {
+        "@type": "Question",
+        "name": "What is the best 16GB VRAM GPU for DeepSeek R1 in 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For pure performance-per-dollar, the RTX 5060 Ti 16GB is the top pick in 2026 at around $430. Its GDDR7 memory bandwidth significantly outperforms older 16GB cards like the RTX 4060 Ti. For used market shoppers, the RTX 3080 Ti 12GB + upgrade path or a used RTX 4070 Ti 16GB offers excellent value."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Why does my DeepSeek R1 generate a thinking block before answering?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This is intentional and is the core feature of R1 models. The text inside the <think>...</think> tags is the model's chain-of-thought reasoning scratchpad — it is working through the problem step by step before committing to an answer. You can hide these tags in the UI using Open WebUI settings, but they represent the model's actual reasoning process."
+        }
+      }]
+    }
+    </script>
+
+    <style>
+        .article-header {
+            background: var(--gradient);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        .article-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+        .article-content {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        .article-content h2 {
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+        }
+        .article-content h3 {
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        .article-content p {
+            margin-bottom: 16px;
+            font-size: 1.05em;
+            color: var(--text);
+        }
+        .featured-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.95em;
+        }
+        .specs-table th {
+            background: var(--primary);
+            color: white;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .specs-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .specs-table tr:hover {
+            background: var(--card);
+        }
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 24px 0;
+        }
+        .product-card h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .spec-row:last-child { border-bottom: none; }
+        .spec-label { font-weight: 600; color: var(--text); }
+        .spec-value { color: var(--primary); font-weight: 500; }
+        .rule-text {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #ef4444;
+            background: linear-gradient(135deg, rgba(239,68,68,0.1), rgba(239,68,68,0.05));
+            padding: 20px;
+            border-radius: 8px;
+            margin: 24px 0;
+            border-left: 4px solid #ef4444;
+        }
+        .back-to-blog {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: 0.3s ease;
+        }
+        .back-to-blog:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(99,102,241,0.3);
+        }
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        .cta-box p { color: white; margin-bottom: 16px; }
+        .code-block {
+            background: #1e1e2e;
+            color: #cdd6f4;
+            padding: 20px 24px;
+            border-radius: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.92em;
+            margin: 20px 0;
+            overflow-x: auto;
+            line-height: 1.7;
+        }
+        .code-block .comment { color: #6c7086; }
+        .code-block .cmd { color: #89b4fa; }
+        .code-block .param { color: #a6e3a1; }
+        .code-block .value { color: #fab387; }
+        code {
+            background: var(--card);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+        .tier-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .tier-best    { background: rgba(99,102,241,0.15); color: #4f46e5; }
+        .tier-value   { background: rgba(34,197,94,0.15);  color: #16a34a; }
+        .tier-stretch { background: rgba(249,115,22,0.15); color: #ea580c; }
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 1.8em; }
+            .article-meta { flex-direction: column; align-items: flex-start; }
+            .specs-table { font-size: 0.85em; }
+            .specs-table th, .specs-table td { padding: 10px 8px; }
+            .rule-text { font-size: 1em; }
+            .code-block { font-size: 0.82em; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-flex">
+        <div class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4 3h16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm6 2H6v3h4V5zm8 0h-4v3h4V5zm-12 5H4v9h2v-9zm4 0H8v9h4v-9zm8 0h-4v9h4v-9z"/>
+            </svg>
+            <span class="logo-text"><a href="../index.html" style="text-decoration: none;">Setu Notes</a></span>
+        </div>
+        <nav class="nav">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../about.html" class="nav-link">About</a>
+            <a href="index.html" class="nav-link active">Blog</a>
+            <a href="../faq.html" class="nav-link">FAQ</a>
+            <a href="../contact.html" class="nav-link">Contact</a>
+            <button id="darkToggle" class="dark-btn nav-dark-btn" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Mobile Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../about.html" class="nav-link">About</a>
+        <a href="index.html" class="nav-link">Blog</a>
+        <a href="../faq.html" class="nav-link">FAQ</a>
+        <a href="../contact.html" class="nav-link">Contact</a>
+        <a href="../privacy-policy.html" class="nav-link">Privacy</a>
+        <a href="../terms.html" class="nav-link">Terms</a>
+    </nav>
+</header>
+
+<div class="breadcrumb">
+    <div class="container">
+        <a href="../index.html">Home</a> / <a href="index.html">Blog</a> / DeepSeek R1 on 16GB VRAM
+    </div>
+</div>
+
+<section class="article-header">
+    <div class="container">
+        <a href="index.html" class="back-to-blog">← Back to Blog</a>
+        <h1>Running DeepSeek R1 Distill on a 16GB VRAM GPU: The Complete 2026 Guide</h1>
+        <div class="article-meta">
+            <span>📅 Updated: March 2026</span>
+            <span>⏱️ 14 min read</span>
+            <span>🤖 AI Guide</span>
+        </div>
+    </div>
+</section>
+
+<main class="container article-content">
+
+    <img src="images/running-deepseek-r1-distill-16gb-vram-gpu.png" alt="Running DeepSeek R1 Distill on a 16GB VRAM GPU" class="featured-image">
+
+    <p>You have a gaming GPU with 16 GB of VRAM — an RTX 4060 Ti, an RTX 4080, an RTX 4070 Ti, or maybe an older RTX 3080 Ti. You have heard about DeepSeek R1, the open-source reasoning model that shocked the AI industry by matching OpenAI's o1 on benchmarks.</p>
+
+    <p>And now you want to run it locally. The good news: <strong>16 GB of VRAM is enough.</strong></p>
+
+    <p>The important nuance: you won't be running the full 671B parameter flagship model. That needs roughly 400 GB of VRAM across multiple data-center GPUs. What you <em>will</em> be running are the <strong>distilled versions</strong> — smaller models trained by the full R1 to reason the same way. And on 16 GB, two of these distilled models are extremely capable.</p>
+
+    <p style="text-align: center; font-style: italic; margin: 40px 0;">Here is the complete, practical guide to getting DeepSeek R1 running at its best on your 16 GB card.</p>
+
+    <h2>First: What Are the Distilled Models?</h2>
+
+    <div class="highlight-box">
+        <strong>Key concept:</strong> DeepSeek trained the full 671B R1 model first. Then they used that model as a "teacher" to fine-tune smaller, dense models — the distilled variants. These smaller models learned R1's chain-of-thought reasoning style. The result: a 14B model that reasons far better than a normal 14B model ever would.
+    </div>
+
+    <p>There are six distilled versions available. They come in two flavours based on their base architecture:</p>
+
+    <ul>
+        <li><strong>Qwen2.5-based:</strong> 1.5B, 7B, 14B, 32B — built on Alibaba's Qwen 2.5 base</li>
+        <li><strong>Llama 3-based:</strong> 8B, 70B — built on Meta's Llama 3 base (note: these carry the Llama 3 license in addition to MIT)</li>
+    </ul>
+
+    <p>For a 16 GB VRAM GPU, two models are in play: the <strong>14B</strong> (fits perfectly) and the <strong>32B</strong> (fits with a trick). Understanding the difference is the entire point of this guide.</p>
+
+    <h2>The VRAM Math: What Actually Fits?</h2>
+
+    <p>To know what runs on your GPU, you need to understand how model size translates to VRAM usage. At full <strong>FP16/BF16 precision</strong>, each parameter takes 2 bytes. A 14B parameter model would need 28 GB — far too large. This is why <strong>quantization</strong> matters.</p>
+
+    <p>Quantization compresses each weight from 16-bit floating point numbers down to 4-bit integers. The model gets roughly 4× smaller with only a small quality loss. This is the <strong>Q4_K_M</strong> format you will see everywhere in GGUF files.</p>
+
+    <table class="specs-table">
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Precision</th>
+                <th>VRAM Required</th>
+                <th>Fits in 16 GB?</th>
+                <th>CPU Offload Needed?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>R1-Distill-Qwen-7B</strong></td>
+                <td>Q4_K_M</td>
+                <td>~5 GB</td>
+                <td>✅ Easily</td>
+                <td>❌ None</td>
+            </tr>
+            <tr>
+                <td><strong>R1-Distill-Qwen-14B</strong></td>
+                <td>Q4_K_M</td>
+                <td>~9 GB</td>
+                <td>✅ Comfortably</td>
+                <td>❌ None</td>
+            </tr>
+            <tr>
+                <td><strong>R1-Distill-Qwen-14B</strong></td>
+                <td>Q8_0</td>
+                <td>~15 GB</td>
+                <td>✅ Just fits</td>
+                <td>❌ None</td>
+            </tr>
+            <tr>
+                <td><strong>R1-Distill-Qwen-32B</strong></td>
+                <td>Q4_K_M</td>
+                <td>~19–20 GB</td>
+                <td>⚠️ Partial (4 GB spills to RAM)</td>
+                <td>✅ ~4 GB to system RAM</td>
+            </tr>
+            <tr>
+                <td><strong>R1-Distill-Qwen-32B</strong></td>
+                <td>Q2_K</td>
+                <td>~12–13 GB</td>
+                <td>✅ Yes (quality trade-off)</td>
+                <td>❌ None</td>
+            </tr>
+            <tr>
+                <td><strong>R1-Distill-Llama-70B</strong></td>
+                <td>Q4_K_M</td>
+                <td>~43 GB</td>
+                <td>❌ No</td>
+                <td>Heavy — impractical</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="rule-text">
+        Rule #1: On 16 GB VRAM, the R1-Distill-Qwen-14B at Q4_K_M is your primary model. It sits at ~9 GB, leaving full headroom for the KV cache. This is where you will spend 90% of your time.
+    </div>
+
+    <h2>Which 16 GB GPU Should You Use?</h2>
+
+    <p>Not all 16 GB cards are equal. The most critical spec for LLM inference is <strong>memory bandwidth</strong> — how fast data moves between the VRAM and the GPU cores. Every token generated requires loading the model weights from memory. Faster bandwidth = more tokens per second. Raw compute (TFLOPS) matters far less for inference than for training.</p>
+
+    <div class="product-card">
+        <span class="tier-badge tier-best">🏆 Best in Class 2026</span>
+        <h3>NVIDIA RTX 5060 Ti 16 GB</h3>
+        <p>The top value pick for local LLM inference on 16 GB in 2026. Its GDDR7 memory offers dramatically higher bandwidth than the RTX 4060 Ti's GDDR6, translating directly into faster token generation speeds.</p>
+        <div style="margin: 20px 0;">
+            <div class="spec-row">
+                <span class="spec-label">VRAM</span>
+                <span class="spec-value">16 GB GDDR7</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Memory Bandwidth</span>
+                <span class="spec-value">~448 GB/s (GDDR7)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">R1-Distill-14B Speed (Q4)</span>
+                <span class="spec-value">~45–55 tokens/sec</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Architecture</span>
+                <span class="spec-value">Blackwell (GB206)</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Approx. Price</span>
+                <span class="spec-value">~$430</span>
+            </div>
+        </div>
+        <p><strong>Why for DeepSeek R1?</strong> The GDDR7 bandwidth improvement over the 4060 Ti is the biggest generational leap in a mid-range card in years. For inference-heavy tasks like R1's long chain-of-thought outputs, this bandwidth directly improves responsiveness. The best new card to buy for 16 GB local AI in 2026.</p>
+    </div>
+
+    <div class="product-card">
+        <span class="tier-badge tier-value">⚡ Best Used Value</span>
+        <h3>NVIDIA RTX 4070 Ti 16 GB / RTX 4080 16 GB</h3>
+        <p>Both cards carry 16 GB of GDDR6X — a fast memory type that outperforms standard GDDR6 significantly. If you already own one of these, or find them used, they are excellent for running the 14B model with headroom to spare. The RTX 4080 in particular, with its wider 256-bit bus, offers near-RTX 4090 performance for inference tasks.</p>
+        <div style="margin: 20px 0;">
+            <div class="spec-row">
+                <span class="spec-label">VRAM</span>
+                <span class="spec-value">16 GB GDDR6X</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Memory Bandwidth (4080)</span>
+                <span class="spec-value">~716 GB/s</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Memory Bandwidth (4070 Ti)</span>
+                <span class="spec-value">~504 GB/s</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">R1-Distill-14B Speed (Q4)</span>
+                <span class="spec-value">RTX 4080: ~55–65 t/s &nbsp;|&nbsp; 4070 Ti: ~40–50 t/s</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Approx. Price (used)</span>
+                <span class="spec-value">4070 Ti: ~$500–600 used &nbsp;|&nbsp; 4080: ~$700–800 used</span>
+            </div>
+        </div>
+        <p><strong>Why for DeepSeek R1?</strong> If you already own one of these for gaming, you have an excellent inference machine. The RTX 4080's 716 GB/s bandwidth makes it one of the fastest 16 GB cards ever made for token generation — faster than many 24 GB cards for single-user inference on the 14B model.</p>
+    </div>
+
+    <div class="product-card">
+        <span class="tier-badge tier-stretch">🔧 The Underdog</span>
+        <h3>NVIDIA RTX 4060 Ti 16 GB</h3>
+        <p>A complicated card. It has the right VRAM amount but a critically narrow 128-bit memory bus — giving it only ~288 GB/s of bandwidth. This is actually <em>lower</em> than the older RTX 3060 (which has 192 GB/s on a 192-bit bus). Real-world benchmarks show it hitting only ~34 tokens/sec on the 14B model. It works, but you will feel the bottleneck. The RTX 5060 Ti replaces it decisively.</p>
+        <div style="margin: 20px 0;">
+            <div class="spec-row">
+                <span class="spec-label">VRAM</span>
+                <span class="spec-value">16 GB GDDR6</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Memory Bandwidth</span>
+                <span class="spec-value">~288 GB/s — the bottleneck</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">R1-Distill-14B Speed (Q4)</span>
+                <span class="spec-value">~30–38 tokens/sec</span>
+            </div>
+            <div class="spec-row">
+                <span class="spec-label">Verdict</span>
+                <span class="spec-value">Works, but bandwidth-limited. Upgrade if possible.</span>
+            </div>
+        </div>
+        <p><strong>Why for DeepSeek R1?</strong> It runs the 14B model fine and the reasoning quality is identical to any other card — model quality depends on the weights, not the GPU. But you will notice slower token output, especially during long chain-of-thought reasoning blocks. Still usable for daily coding assistance.</p>
+    </div>
+
+    <h3>Full GPU Comparison: R1-Distill-14B (Q4_K_M)</h3>
+
+    <table class="specs-table">
+        <thead>
+            <tr>
+                <th>GPU</th>
+                <th>VRAM</th>
+                <th>Bandwidth</th>
+                <th>14B Q4 Speed</th>
+                <th>32B Offload?</th>
+                <th>Price (approx)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>RTX 5060 Ti</strong></td>
+                <td>16 GB GDDR7</td>
+                <td>~448 GB/s</td>
+                <td>~45–55 t/s</td>
+                <td>⚠️ Partial</td>
+                <td>~$430 new</td>
+            </tr>
+            <tr>
+                <td><strong>RTX 4080</strong></td>
+                <td>16 GB GDDR6X</td>
+                <td>~716 GB/s</td>
+                <td>~55–65 t/s</td>
+                <td>⚠️ Partial</td>
+                <td>~$700–800 used</td>
+            </tr>
+            <tr>
+                <td><strong>RTX 4070 Ti</strong></td>
+                <td>16 GB GDDR6X</td>
+                <td>~504 GB/s</td>
+                <td>~40–50 t/s</td>
+                <td>⚠️ Partial</td>
+                <td>~$500–600 used</td>
+            </tr>
+            <tr>
+                <td><strong>RTX 4060 Ti</strong></td>
+                <td>16 GB GDDR6</td>
+                <td>~288 GB/s</td>
+                <td>~30–38 t/s</td>
+                <td>⚠️ Partial</td>
+                <td>~$380–420</td>
+            </tr>
+            <tr>
+                <td><strong>RTX 3080 Ti</strong></td>
+                <td>12 GB GDDR6X</td>
+                <td>~912 GB/s</td>
+                <td>~50–58 t/s (7B full GPU)</td>
+                <td>❌ Not 14B fully</td>
+                <td>~$400–500 used</td>
+            </tr>
+        </tbody>
+    </table>
+    <p style="font-size: 0.9em; opacity: 0.7;">*Token speeds are approximate for single-user inference via Ollama at Q4_K_M quantization. Results vary by system RAM speed, context length, and OS overhead.</p>
+
+    <h2>Step-by-Step Setup: Ollama on Windows &amp; Linux</h2>
+
+    <h3>Step 1 — Install Ollama</h3>
+
+    <p>Ollama is a free, open-source model server that handles everything: downloading models, managing GPU offloading, and exposing a local API. One command installs it on Linux:</p>
+
+    <div class="code-block">
+<span class="comment"># Linux / macOS — one-line installer</span>
+<span class="cmd">curl</span> -fsSL https://ollama.com/install.sh | sh
+
+<span class="comment"># Windows — download the installer from:</span>
+<span class="comment"># https://ollama.com/download/windows</span>
+<span class="comment"># Then open PowerShell and verify:</span>
+<span class="cmd">ollama</span> --version
+    </div>
+
+    <p>On Windows with an NVIDIA GPU, Ollama auto-detects CUDA. On Linux, ensure your NVIDIA driver is version 525 or newer before installing.</p>
+
+    <h3>Step 2 — Pull the Right Model</h3>
+
+    <p>For a 16 GB VRAM GPU, pull the 14B model as your primary. Optionally pull the 32B if you have 32+ GB of system RAM for partial offloading:</p>
+
+    <div class="code-block">
+<span class="comment"># Primary model — 14B at Q4_K_M (~9 GB, runs fully on GPU)</span>
+<span class="cmd">ollama pull</span> <span class="value">deepseek-r1:14b</span>
+
+<span class="comment"># Explicit quantization tag (avoids tag-drift as Ollama updates defaults):</span>
+<span class="cmd">ollama pull</span> <span class="value">deepseek-r1:14b-distill-qwen-q4_K_M</span>
+
+<span class="comment"># Optional stretch model — 32B at Q4_K_M (~20 GB, needs 4 GB RAM offload)</span>
+<span class="cmd">ollama pull</span> <span class="value">deepseek-r1:32b</span>
+
+<span class="comment"># Check what you've downloaded</span>
+<span class="cmd">ollama list</span>
+    </div>
+
+    <h3>Step 3 — Create a Tuned Modelfile</h3>
+
+    <p>Ollama's default settings are conservative. Creating a <strong>Modelfile</strong> unlocks the proper context window and temperature for R1's reasoning behaviour. Create a file called <code>Modelfile-r1-14b</code> with this content:</p>
+
+    <div class="code-block">
+<span class="comment"># Modelfile-r1-14b</span>
+<span class="comment"># Explicit quantization tag to prevent silent tag changes</span>
+<span class="param">FROM</span> <span class="value">deepseek-r1:14b-distill-qwen-q4_K_M</span>
+
+<span class="comment"># Offload all layers that fit to GPU (-1 = auto, 99 = all layers)</span>
+<span class="param">PARAMETER</span> <span class="cmd">num_gpu</span> <span class="value">99</span>
+
+<span class="comment"># Context window: 8192 is minimum for R1 reasoning blocks</span>
+<span class="comment"># Each 4096 tokens costs ~0.5 GB VRAM at Q4_K_M</span>
+<span class="comment"># On 16 GB with 14B model (~9 GB), you have ~7 GB left = ~16K context</span>
+<span class="param">PARAMETER</span> <span class="cmd">num_ctx</span> <span class="value">16384</span>
+
+<span class="comment"># Temperature: 0.6 is the DeepSeek-recommended sweet spot for reasoning</span>
+<span class="comment"># Lower = more deterministic, higher = more creative</span>
+<span class="param">PARAMETER</span> <span class="cmd">temperature</span> <span class="value">0.6</span>
+
+<span class="comment"># System prompt — optional, helps keep R1 focused on tasks</span>
+<span class="param">SYSTEM</span> <span class="value">"""You are a helpful, expert-level AI assistant. Think through problems step by step before answering. Show your reasoning clearly."""</span>
+    </div>
+
+    <p>Now build and run the custom model:</p>
+
+    <div class="code-block">
+<span class="comment"># Build the custom model from the Modelfile</span>
+<span class="cmd">ollama create</span> <span class="value">r1-14b-tuned</span> -f Modelfile-r1-14b
+
+<span class="comment"># Run it interactively</span>
+<span class="cmd">ollama run</span> <span class="value">r1-14b-tuned</span>
+    </div>
+
+    <h3>Step 4 — Verify GPU Is Being Used</h3>
+
+    <p>This is the most important check. While a model is loaded, open a second terminal and run:</p>
+
+    <div class="code-block">
+<span class="comment"># Check which models are loaded and on which processor</span>
+<span class="cmd">ollama ps</span>
+
+<span class="comment"># Expected output for full GPU inference:</span>
+<span class="comment"># NAME                   SIZE    PROCESSOR   UNTIL</span>
+<span class="comment"># r1-14b-tuned:latest    9.0 GB  100% GPU    4 minutes from now</span>
+
+<span class="comment"># If it shows "100% CPU" or split like "70% GPU / 30% CPU"</span>
+<span class="comment"># your GPU driver may not be detected. Enable debug mode:</span>
+<span class="cmd">OLLAMA_DEBUG=1 ollama run</span> <span class="value">r1-14b-tuned</span>
+    </div>
+
+    <div class="highlight-box">
+        <strong>Windows-specific note:</strong> If Ollama shows CPU-only on Windows with an NVIDIA card, open Device Manager and confirm your GPU driver is version 525+. Then restart the Ollama service from the system tray. On some systems you may need to run Ollama as Administrator once for it to detect the GPU properly.
+    </div>
+
+    <h3>Step 5 — Install Open WebUI for a Browser Interface</h3>
+
+    <p>The command line works, but a browser UI is far better for long coding sessions. <strong>Open WebUI</strong> gives you a ChatGPT-style interface connected directly to your local Ollama server:</p>
+
+    <div class="code-block">
+<span class="comment"># Requires Docker to be installed first</span>
+<span class="cmd">docker run -d</span> \
+  -p <span class="value">3000:8080</span> \
+  --add-host=host.docker.internal:host-gateway \
+  -v open-webui:/app/backend/data \
+  --name open-webui \
+  --restart always \
+  ghcr.io/open-webui/open-webui:main
+
+<span class="comment"># Then open your browser at:</span>
+<span class="comment"># http://localhost:3000</span>
+    </div>
+
+    <p>Select your <code>r1-14b-tuned</code> model from the dropdown. You now have a private, local ChatGPT that runs entirely on your GPU.</p>
+
+    <h2>The 32B Stretch: CPU Offloading on 16 GB</h2>
+
+    <p>The 32B model at Q4_K_M is roughly 19–20 GB — about 4 GB too large to fit entirely on a 16 GB card. <strong>But it can still run</strong> using CPU offloading: the layers that don't fit spill into system RAM. Here is what you need to know:</p>
+
+    <div class="rule-text">
+        Rule #2: To run the 32B model with partial CPU offloading, you must have at least 32 GB of system RAM. The GPU-to-CPU data transfer creates a bottleneck — expect 8–14 tokens/sec instead of 30–50 t/s on the 14B model.
+    </div>
+
+    <p>Create a separate Modelfile for the 32B with a reduced context window to minimize VRAM pressure:</p>
+
+    <div class="code-block">
+<span class="comment"># Modelfile-r1-32b-offload</span>
+<span class="param">FROM</span> <span class="value">deepseek-r1:32b-distill-qwen-q4_K_M</span>
+
+<span class="comment"># Let Ollama automatically decide the layer split</span>
+<span class="comment"># It will fill the GPU first, then offload the rest to RAM</span>
+<span class="param">PARAMETER</span> <span class="cmd">num_gpu</span> <span class="value">99</span>
+
+<span class="comment"># Reduce context window to save VRAM for more GPU layers</span>
+<span class="comment"># More GPU layers = faster, even in offload mode</span>
+<span class="param">PARAMETER</span> <span class="cmd">num_ctx</span> <span class="value">4096</span>
+
+<span class="param">PARAMETER</span> <span class="cmd">temperature</span> <span class="value">0.6</span>
+    </div>
+
+    <div class="code-block">
+<span class="cmd">ollama create</span> <span class="value">r1-32b-offload</span> -f Modelfile-r1-32b-offload
+<span class="cmd">ollama run</span>    <span class="value">r1-32b-offload</span>
+    </div>
+
+    <p>When is it worth tolerating 10 t/s for the 32B model? When you need genuinely stronger reasoning on a hard problem — complex algorithm design, multi-step debugging, competitive programming. The 32B distill's reasoning quality is notably better than 14B on problems where the 14B "loses track" of intermediate steps. Use it on demand, not as your daily driver.</p>
+
+    <h2>Understanding the &lt;think&gt; Blocks</h2>
+
+    <p>The first time you run a DeepSeek R1 model, you will see something unusual — a wall of text between <code>&lt;think&gt;</code> and <code>&lt;/think&gt;</code> tags before the final answer. This is not a bug.</p>
+
+    <p>This is the model's <strong>chain-of-thought reasoning scratchpad</strong>. R1 was trained through reinforcement learning to think step-by-step before committing to a final answer. The <code>&lt;think&gt;</code> block is the model's internal monologue — working through the problem, considering alternatives, catching its own errors, and arriving at a confident conclusion.</p>
+
+    <p>For coding tasks, this reasoning block is extremely valuable. You can watch the model trace through a bug, explore multiple fix approaches, and explain why it rejected the first two before settling on the correct solution.</p>
+
+    <div class="highlight-box">
+        <strong>Tip:</strong> In Open WebUI, you can configure the interface to collapse <code>&lt;think&gt;</code> blocks by default, showing only the final answer but expanding the reasoning on demand. This keeps the UI clean while preserving access to the full reasoning trace when you need it.
+    </div>
+
+    <h2>Context Window: How Much Can You Hold in Mind?</h2>
+
+    <p>The context window is how much text — your prompt plus the model's response — the model can hold at once. DeepSeek R1 distilled models support up to 128,000 tokens natively, but your VRAM limits how much of that you can use in practice.</p>
+
+    <p>On a 16 GB card with the 14B Q4_K_M model (~9 GB used), you have roughly 7 GB free for the KV cache. Here is what that translates to:</p>
+
+    <table class="specs-table">
+        <thead>
+            <tr>
+                <th>Context Setting (num_ctx)</th>
+                <th>Approx. KV Cache VRAM Used</th>
+                <th>VRAM Remaining After 14B Model</th>
+                <th>Fits on 16 GB?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>4,096 tokens</td>
+                <td>~0.5 GB</td>
+                <td>~6.5 GB free</td>
+                <td>✅ Easily</td>
+            </tr>
+            <tr>
+                <td>8,192 tokens</td>
+                <td>~1 GB</td>
+                <td>~6 GB free</td>
+                <td>✅ Recommended minimum for R1</td>
+            </tr>
+            <tr>
+                <td>16,384 tokens</td>
+                <td>~2 GB</td>
+                <td>~5 GB free</td>
+                <td>✅ Sweet spot for coding sessions</td>
+            </tr>
+            <tr>
+                <td>32,768 tokens</td>
+                <td>~4 GB</td>
+                <td>~3 GB free</td>
+                <td>✅ Long codebase analysis</td>
+            </tr>
+            <tr>
+                <td>65,536 tokens</td>
+                <td>~8 GB</td>
+                <td>⚠️ Overflows — layers offload to RAM</td>
+                <td>⚠️ Slower</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="highlight-box">
+        <strong>Practical advice:</strong> Set <code>num_ctx 16384</code> as your default. This is enough to hold a long coding conversation, a full function file, and R1's extended reasoning blocks simultaneously. Only increase to 32K when you specifically need to paste in a large file for analysis.
+    </div>
+
+    <h2>Quantization Levels Explained</h2>
+
+    <p>You will see different quantization formats when browsing models. Here is what they mean for the 14B model on 16 GB VRAM:</p>
+
+    <table class="specs-table">
+        <thead>
+            <tr>
+                <th>Quantization</th>
+                <th>VRAM (14B)</th>
+                <th>Quality vs FP16</th>
+                <th>Recommendation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Q4_K_M</strong></td>
+                <td>~9 GB</td>
+                <td>~97% of FP16 quality</td>
+                <td>✅ Best choice for most users</td>
+            </tr>
+            <tr>
+                <td><strong>Q5_K_M</strong></td>
+                <td>~10.5 GB</td>
+                <td>~98.5% of FP16 quality</td>
+                <td>✅ Slightly better — fits with margin</td>
+            </tr>
+            <tr>
+                <td><strong>Q8_0</strong></td>
+                <td>~15 GB</td>
+                <td>~99.5% of FP16 quality</td>
+                <td>⚠️ Fits — but tiny KV cache headroom</td>
+            </tr>
+            <tr>
+                <td><strong>FP16 (full)</strong></td>
+                <td>~28 GB</td>
+                <td>100% (reference quality)</td>
+                <td>❌ Does not fit on 16 GB</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>The practical verdict: <strong>Q4_K_M is the right choice</strong> for the 14B model on 16 GB. The difference between Q4_K_M and Q8_0 in real-world reasoning tasks is negligible — you will not notice it in coding output quality. But Q8_0 costs 6 GB more VRAM, drastically shrinking your available context window.</p>
+
+    <h2>Quick Performance Test: Verify Your Setup</h2>
+
+    <p>Once running, paste this prompt to verify the chain-of-thought reasoning is working correctly:</p>
+
+    <div class="code-block">
+<span class="comment"># Test prompt — should trigger a visible think block</span>
+<span class="value">"A Python function reverses a linked list iteratively. 
+Write the function, then trace through it step by step 
+with a 3-node list [1 -> 2 -> 3] to verify correctness."</span>
+    </div>
+
+    <p>You should see a <code>&lt;think&gt;</code> block where the model traces the pointer reassignments node by node, then a clean final answer with the code. If you only get the code with no reasoning block, your model tag may have pulled the base Qwen model rather than the R1 distilled version — verify with <code>ollama show deepseek-r1:14b</code> and confirm it says "distill" in the model card.</p>
+
+    <h2>People Also Ask (FAQ)</h2>
+    <p>Common questions about running DeepSeek R1 distilled models on 16 GB VRAM GPUs.</p>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <h3>Which DeepSeek R1 distill model should I run on a 16 GB VRAM GPU?</h3>
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            <p>The R1-Distill-Qwen-14B at Q4_K_M quantization is the sweet spot. It uses roughly 9 GB of VRAM, leaving generous headroom for the KV cache and OS overhead. This means it runs entirely on the GPU with no CPU offloading, giving you 30–60 tokens per second depending on your specific card's memory bandwidth.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <h3>Can I run DeepSeek R1 Distill 32B on a 16 GB VRAM GPU?</h3>
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            <p>Yes, but with a trade-off. The 32B model at Q4_K_M quantization is roughly 19–20 GB, so about 4 GB of layers must offload to system RAM. You need at least 32 GB of system RAM alongside the GPU. Expect a speed drop to around 8–14 tokens per second due to the PCIe bus bottleneck between the GPU and RAM. Use it for demanding reasoning tasks where 14B isn't cutting it, rather than as your everyday model.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <h3>What is the best 16 GB VRAM GPU for DeepSeek R1 in 2026?</h3>
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            <p>For a new purchase, the RTX 5060 Ti 16 GB is the top value pick at around $430, thanks to its GDDR7 memory bandwidth improvements over previous generations. On the used market, the RTX 4080 16 GB offers exceptional inference speed at its bandwidth of ~716 GB/s, though it costs more. The RTX 4060 Ti 16 GB works but is bottlenecked by its narrow 128-bit memory bus — its bandwidth is actually lower than many older cards, making it a poor value specifically for LLM inference.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <h3>Why does my DeepSeek R1 generate a thinking block before answering?</h3>
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            <p>This is intentional and is the core feature of R1 models. The text inside the <code>&lt;think&gt;...&lt;/think&gt;</code> tags is the model's chain-of-thought reasoning scratchpad — it is working through the problem step by step before committing to an answer. These tags represent the model's actual reasoning process and are a big reason why R1 distilled models outperform comparably-sized general models on hard problems. You can hide these tags in the Open WebUI settings, but they remain available to expand on demand.</p>
+        </div>
+    </div>
+
+    <div class="cta-box">
+        <p><strong>Want a follow-up guide on connecting DeepSeek R1 to Continue.dev as a local VS Code Copilot replacement?</strong> Let us know in the comments below!</p>
+    </div>
+
+    <h2>Final Summary</h2>
+
+    <p>A 16 GB VRAM GPU is genuinely capable hardware for local AI in 2026. Here is the quick reference:</p>
+
+    <ul>
+        <li><strong>Your daily driver model:</strong> <code>deepseek-r1:14b-distill-qwen-q4_K_M</code> — runs fully on GPU, 30–65 t/s depending on your card, excellent reasoning quality.</li>
+        <li><strong>Your stretch model:</strong> <code>deepseek-r1:32b</code> with reduced context — partially offloaded, ~10 t/s, noticeably stronger reasoning for hard problems. Requires 32 GB+ system RAM.</li>
+        <li><strong>Quantization choice:</strong> Q4_K_M for best balance. Q5_K_M if you want a slight quality bump and still have VRAM headroom.</li>
+        <li><strong>Context window:</strong> Set <code>num_ctx 16384</code> as default. Reduce to 8192 if you notice slowdowns or VRAM warnings.</li>
+        <li><strong>Temperature:</strong> Use 0.6 — DeepSeek's own recommendation for reasoning tasks. Lower for deterministic code generation.</li>
+        <li><strong>Best card for new buyers:</strong> RTX 5060 Ti 16 GB at ~$430. Best value on used market: RTX 4080 16 GB if budget allows.</li>
+    </ul>
+
+    <h3 style="font-size: 1.3em; color: var(--primary); margin-top: 30px;">Your GPU was waiting for this moment. Point it at a model and let it think.</h3>
+
+    <hr style="margin: 60px 0; border: none; height: 1px; background: var(--border);">
+
+    <div style="text-align: center; padding: 40px 0;">
+        <h3>More Tech Guides</h3>
+        <p>Check out our full blog for more technology and setup guides.</p>
+        <a href="index.html" class="back-to-blog" style="margin-top: 20px;">← Back to Blog</a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">Setu Notes</h3>
+                <p class="footer-description">Your one-stop platform for downloading NCERT books PDF. Access complete books and chapter-wise materials for classes 1-12.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook" class="social-link">f</a>
+                    <a href="#" aria-label="Twitter" class="social-link">𝕏</a>
+                    <a href="#" aria-label="LinkedIn" class="social-link">in</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Classes</a></li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-heading">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="blog/index.html">Blog</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-heading">Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="terms.html">Disclaimer</a></li>
+                    <li><a href="privacy-policy.html">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Setu Notes. This website provides links to official NCERT resources.</p>
+            <p class="footer-credit">Designed with care for students</p>
+        </div>
+    </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
