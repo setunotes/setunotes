@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy — UPSC AudioBook</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:        #0c0e13;
+      --surface:   #13161e;
+      --border:    #1f2330;
+      --gold:      #c9a84c;
+      --gold-lt:   #e2c97e;
+      --text:      #dce1ec;
+      --muted:     #7a8499;
+      --accent:    #3a6ea8;
+      --accent-lt: #5b8fc9;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    /* ── decorative grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── glowing orb behind hero ── */
+    .orb {
+      position: fixed;
+      top: -160px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── layout ── */
+    .wrapper {
+      position: relative; z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── header ── */
+    header {
+      text-align: center;
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .app-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 6px 18px 6px 10px;
+      margin-bottom: 28px;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .app-badge .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: .5; transform: scale(.8); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    h1 span { color: var(--gold); }
+
+    .meta {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+
+    .meta strong { color: var(--gold-lt); font-weight: 500; }
+
+    /* ── quick-nav ── */
+    .toc {
+      margin: 48px 0 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px 24px;
+    }
+
+    .toc-title {
+      grid-column: 1 / -1;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .toc a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color .2s;
+    }
+
+    .toc a::before {
+      content: '→';
+      font-size: 11px;
+      color: var(--gold);
+      transition: transform .2s;
+    }
+
+    .toc a:hover { color: var(--text); }
+    .toc a:hover::before { transform: translateX(4px); }
+
+    /* ── sections ── */
+    section {
+      margin-top: 52px;
+      padding-top: 52px;
+      border-top: 1px solid var(--border);
+    }
+
+    section:first-of-type { border-top: none; margin-top: 52px; }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    p { color: var(--text); margin-bottom: 14px; }
+
+    /* ── info cards ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gold-lt);
+      margin-bottom: 6px;
+    }
+
+    .card p { font-size: 13px; color: var(--muted); margin: 0; }
+
+    /* ── lists ── */
+    ul, ol {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 14px;
+    }
+
+    li {
+      position: relative;
+      padding-left: 22px;
+      color: var(--text);
+      margin-bottom: 8px;
+      font-size: 14.5px;
+    }
+
+    li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: var(--gold);
+      font-size: 11px;
+      top: 4px;
+    }
+
+    /* ── highlight box ── */
+    .highlight {
+      background: linear-gradient(135deg, rgba(201,168,76,.08), rgba(58,110,168,.08));
+      border: 1px solid rgba(201,168,76,.25);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    .highlight strong { color: var(--gold-lt); }
+
+    /* ── table ── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 20px 0;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    thead tr { background: var(--surface); }
+    thead th {
+      padding: 14px 18px;
+      text-align: left;
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      font-size: 11px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr { border-bottom: 1px solid var(--border); transition: background .15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,.02); }
+
+    td {
+      padding: 13px 18px;
+      color: var(--text);
+      vertical-align: top;
+    }
+
+    td:first-child { color: var(--gold-lt); font-weight: 500; }
+
+    /* ── tag chips ── */
+    .chip {
+      display: inline-block;
+      background: rgba(58,110,168,.15);
+      border: 1px solid rgba(91,143,201,.3);
+      color: var(--accent-lt);
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin: 2px;
+    }
+
+    /* ── contact card ── */
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-top: 24px;
+    }
+
+    .contact-box a {
+      color: var(--accent-lt);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(91,143,201,.4);
+      transition: color .2s, border-color .2s;
+    }
+
+    .contact-box a:hover { color: var(--gold-lt); border-color: var(--gold); }
+
+    /* ── footer ── */
+    footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    footer span { color: var(--gold); }
+
+    /* ── scroll top ── */
+    .back-top {
+      position: fixed;
+      bottom: 32px; right: 28px;
+      background: var(--gold);
+      color: #0c0e13;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(201,168,76,.35);
+      transition: transform .2s, box-shadow .2s;
+      z-index: 10;
+    }
+
+    .back-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(201,168,76,.5);
+    }
+
+    /* ── entry animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    header, section, .toc {
+      animation: fadeUp .6s ease both;
+    }
+
+    section:nth-of-type(1)  { animation-delay: .05s; }
+    section:nth-of-type(2)  { animation-delay: .10s; }
+    section:nth-of-type(3)  { animation-delay: .15s; }
+    section:nth-of-type(4)  { animation-delay: .20s; }
+    section:nth-of-type(5)  { animation-delay: .25s; }
+    section:nth-of-type(6)  { animation-delay: .30s; }
+    section:nth-of-type(7)  { animation-delay: .35s; }
+    section:nth-of-type(8)  { animation-delay: .40s; }
+    section:nth-of-type(9)  { animation-delay: .45s; }
+    section:nth-of-type(10) { animation-delay: .50s; }
+  </style>
+</head>
+<body>
+
+<div class="orb"></div>
+
+<div class="wrapper">
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="app-badge">
+      <span class="dot"></span>
+      Android Application
+    </div>
+    <h1>Privacy <span>Policy</span></h1>
+    <p class="meta">
+      Application: <strong>UPSC AudioBook</strong> &nbsp;|&nbsp;
+      Effective Date: <strong>April 4, 2025</strong> &nbsp;|&nbsp;
+      Last Updated: <strong>April 4, 2025</strong>
+    </p>
+
+    <!-- Table of Contents -->
+    <nav class="toc">
+      <div class="toc-title">Quick Navigation</div>
+      <a href="#overview">Overview</a>
+      <a href="#data-collected">Data We Collect</a>
+      <a href="#auth">Authentication</a>
+      <a href="#payments">Payments & Subscriptions</a>
+      <a href="#content">Content Access</a>
+      <a href="#usage">How We Use Data</a>
+      <a href="#third-party">Third-Party Services</a>
+      <a href="#storage">Data Storage & Security</a>
+      <a href="#rights">Your Rights</a>
+      <a href="#children">Children's Privacy</a>
+      <a href="#changes">Policy Changes</a>
+      <a href="#contact">Contact Us</a>
+    </nav>
+  </header>
+
+  <!-- ── 1. OVERVIEW ── -->
+  <section id="overview">
+    <div class="section-label">Section 01</div>
+    <h2>Overview</h2>
+    <p>
+      Welcome to <strong>UPSC AudioBook</strong> ("we", "our", or "us"). This Privacy Policy explains how we collect, use, store, and protect your personal information when you use our Android application. We are committed to handling your data responsibly in accordance with applicable data protection laws.
+    </p>
+    <p>
+      By installing or using our application, you agree to the terms described in this Privacy Policy. If you do not agree, please discontinue use of the application immediately.
+    </p>
+    <div class="highlight">
+      <strong>Quick Summary:</strong> We collect only the data necessary to provide you with UPSC study content — including NCERT audiobooks and important UPSC reference materials. PDF reading is always free. An active subscription is required only to access audio content. Your payment details are handled entirely by Razorpay and never stored on our servers.
+    </div>
+  </section>
+
+  <!-- ── 2. DATA COLLECTED ── -->
+  <section id="data-collected">
+    <div class="section-label">Section 02</div>
+    <h2>Information We Collect</h2>
+    <p>We collect the following categories of information when you use our application:</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">👤</div>
+        <div class="card-title">Account Information</div>
+        <p>Name, email address, and profile picture obtained through Firebase Authentication or Google Sign-In.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <div class="card-title">Device Information</div>
+        <p>Device model, OS version, unique device identifiers, and app version for analytics and support.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💳</div>
+        <div class="card-title">Payment Records</div>
+        <p>Subscription status, transaction IDs, and purchase timestamps verified via our backend. No card details are stored by us.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <div class="card-title">Usage Analytics</div>
+        <p>Books accessed, audio playback history, session duration, and feature interactions to improve our content.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔔</div>
+        <div class="card-title">Notification Tokens</div>
+        <p>Firebase Cloud Messaging (FCM) token for sending you study reminders and content update notifications.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <div class="card-title">Log Data</div>
+        <p>IP address, crash reports, error logs, and access timestamps collected for debugging and security purposes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3. AUTHENTICATION ── -->
+  <section id="auth">
+    <div class="section-label">Section 03</div>
+    <h2>Authentication &amp; Account Security</h2>
+    <p>We offer two methods of authentication, both integrated with Firebase Authentication and verified against our own backend server:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Login Method</th>
+            <th>Data Accessed</th>
+            <th>Stored By Us</th>
+            <th>Verification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Email &amp; Password</td>
+            <td>Email address, hashed password</td>
+            <td>Email, UID (Firebase)</td>
+            <td>Firebase + our backend</td>
+          </tr>
+          <tr>
+            <td>Google Sign-In</td>
+            <td>Name, email, profile photo, Google ID token</td>
+            <td>Email, display name, photo URL, UID</td>
+            <td>Google OAuth + Firebase + our backend</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ul>
+      <li>Passwords are never stored in plain text — Firebase handles all password hashing and security.</li>
+      <li>Google Sign-In tokens are validated server-side against Google's OAuth2 endpoints.</li>
+      <li>Our backend issues session tokens to verify subscription status and access control independently.</li>
+      <li>You can delete your account at any time from Settings, which will erase all associated data within 30 days.</li>
+    </ul>
+  </section>
+
+  <!-- ── 4. PAYMENTS ── -->
+  <section id="payments">
+    <div class="section-label">Section 04</div>
+    <h2>Payments &amp; Subscription</h2>
+    <p>
+      Audio content in the app requires an active subscription. Payments are processed exclusively through <strong>Razorpay</strong>, a PCI-DSS compliant payment gateway. We do not store, process, or have access to your credit/debit card details, UPI VPA, or net banking credentials.
+    </p>
+
+    <div class="highlight">
+      <strong>Free Access:</strong> Browsing and reading PDF versions of all UPSC content — NCERT books and important reference materials — is completely <strong>free</strong> and does not require a subscription or login.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Free</th>
+            <th>Subscription Required</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PDF Reading (NCERT &amp; UPSC Books)</td>
+            <td>✅ Always Free</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Audio Playback (All Books)</td>
+            <td>❌</td>
+            <td>✅ Active Subscription</td>
+          </tr>
+          <tr>
+            <td>Download for Offline Audio</td>
+            <td>❌</td>
+            <td>✅ Active Subscription</td>
+          </tr>
+          <tr>
+            <td>Bookmarks &amp; Progress Sync</td>
+            <td>✅ (PDF only)</td>
+            <td>✅ (Audio + PDF)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Data we receive from Razorpay and store on our backend includes:</p>
+    <ul>
+      <li>Razorpay Order ID and Payment ID (for verification only)</li>
+      <li>Subscription plan, start date, and expiry date</li>
+      <li>Payment status (success/failed/refunded)</li>
+      <li>Amount and currency — no card/banking details</li>
+    </ul>
+
+    <p>Razorpay's privacy policy is available at <span class="chip">razorpay.com/privacy</span></p>
+  </section>
+
+  <!-- ── 5. CONTENT ── -->
+  <section id="content">
+    <div class="section-label">Section 05</div>
+    <h2>Content &amp; Library</h2>
+    <p>Our app provides the following UPSC-specific content, all hosted on our servers:</p>
+    <ul>
+      <li><strong>NCERT Books (PDF + Audio):</strong> Standard NCERT textbooks relevant to UPSC CSE preparation (Classes 6–12 across History, Geography, Polity, Economy, Science, etc.).</li>
+      <li><strong>Important UPSC Reference Books (PDF + Audio):</strong> Curated list of standard references like Laxmikanth (Polity), Bipin Chandra (History), Ramesh Singh (Economy), and others.</li>
+      <li>Content access logs (which books you opened and how long you listened) are stored to support progress tracking and improve recommendations.</li>
+      <li>We do not share your reading or listening history with third parties for advertising.</li>
+    </ul>
+  </section>
+
+  <!-- ── 6. HOW WE USE DATA ── -->
+  <section id="usage">
+    <div class="section-label">Section 06</div>
+    <h2>How We Use Your Information</h2>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Purpose</th>
+            <th>Data Used</th>
+            <th>Legal Basis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Account creation &amp; authentication</td>
+            <td>Email, name, UID</td>
+            <td>Contract performance</td>
+          </tr>
+          <tr>
+            <td>Subscription verification</td>
+            <td>Payment ID, user UID, expiry</td>
+            <td>Contract performance</td>
+          </tr>
+          <tr>
+            <td>Progress tracking (bookmarks, position)</td>
+            <td>Usage data, device ID</td>
+            <td>Legitimate interest</td>
+          </tr>
+          <tr>
+            <td>Push notifications (study reminders)</td>
+            <td>FCM token</td>
+            <td>Consent (opt-in)</td>
+          </tr>
+          <tr>
+            <td>Bug fixing &amp; crash reporting</td>
+            <td>Device info, crash logs</td>
+            <td>Legitimate interest</td>
+          </tr>
+          <tr>
+            <td>App analytics &amp; improvements</td>
+            <td>Aggregated usage patterns</td>
+            <td>Legitimate interest</td>
+          </tr>
+          <tr>
+            <td>Customer support</td>
+            <td>Email, issue description</td>
+            <td>Legitimate interest</td>
+          </tr>
+          <tr>
+            <td>Legal compliance &amp; fraud prevention</td>
+            <td>Transaction data, logs</td>
+            <td>Legal obligation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>We do <strong>not</strong> sell, rent, or trade your personal data to any third party.</p>
+  </section>
+
+  <!-- ── 7. THIRD-PARTY ── -->
+  <section id="third-party">
+    <div class="section-label">Section 07</div>
+    <h2>Third-Party Services</h2>
+    <p>Our application integrates with the following third-party services. Each operates under its own privacy policy:</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🔥</div>
+        <div class="card-title">Firebase (Google)</div>
+        <p>Authentication, Cloud Messaging (FCM), Crashlytics, and Firestore for real-time data sync.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔐</div>
+        <div class="card-title">Google Sign-In</div>
+        <p>OAuth 2.0 based social login. Only profile name, email, and photo are accessed with your consent.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💰</div>
+        <div class="card-title">Razorpay</div>
+        <p>PCI-DSS compliant payment processor for subscription billing. We never receive your card details.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">☁️</div>
+        <div class="card-title">Our Backend Server</div>
+        <p>Custom REST API hosted on secure cloud infrastructure. Handles subscription validation, user accounts, and content access control.</p>
+      </div>
+    </div>
+
+    <ul>
+      <li>Firebase Privacy Policy: <span class="chip">firebase.google.com/support/privacy</span></li>
+      <li>Google Privacy Policy: <span class="chip">policies.google.com/privacy</span></li>
+      <li>Razorpay Privacy Policy: <span class="chip">razorpay.com/privacy</span></li>
+    </ul>
+  </section>
+
+  <!-- ── 8. STORAGE & SECURITY ── -->
+  <section id="storage">
+    <div class="section-label">Section 08</div>
+    <h2>Data Storage &amp; Security</h2>
+    <p>We take the security of your data seriously and implement the following measures:</p>
+    <ul>
+      <li>All data transmitted between the app and our servers is encrypted using <strong>TLS 1.2+</strong>.</li>
+      <li>User credentials are managed exclusively by Firebase Authentication — we do not store raw passwords.</li>
+      <li>Our backend APIs require valid authentication tokens for all protected endpoints.</li>
+      <li>Payment data is stored only in Razorpay's PCI-DSS compliant infrastructure.</li>
+      <li>We perform regular security reviews of our backend systems.</li>
+      <li>Access to user data within our team is restricted on a need-to-know basis.</li>
+    </ul>
+
+    <div class="highlight">
+      <strong>Data Retention:</strong> Account data is retained as long as your account is active. Upon account deletion, personal data is purged within <strong>30 days</strong>. Transaction records may be retained for up to <strong>7 years</strong> for legal and financial compliance.
+    </div>
+  </section>
+
+  <!-- ── 9. YOUR RIGHTS ── -->
+  <section id="rights">
+    <div class="section-label">Section 09</div>
+    <h2>Your Rights</h2>
+    <p>Depending on your jurisdiction, you may have the following rights regarding your personal data:</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">👁️</div>
+        <div class="card-title">Right to Access</div>
+        <p>Request a copy of the personal data we hold about you.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✏️</div>
+        <div class="card-title">Right to Rectification</div>
+        <p>Correct inaccurate or incomplete personal information from within the app or by contacting us.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🗑️</div>
+        <div class="card-title">Right to Erasure</div>
+        <p>Request deletion of your account and associated personal data from our systems.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚫</div>
+        <div class="card-title">Right to Object</div>
+        <p>Opt out of non-essential data processing such as analytics or push notifications.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📦</div>
+        <div class="card-title">Right to Portability</div>
+        <p>Receive your personal data in a structured, machine-readable format upon request.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⏸️</div>
+        <div class="card-title">Right to Restrict</div>
+        <p>Request that we limit how we process your data in certain circumstances.</p>
+      </div>
+    </div>
+
+    <p>To exercise any of these rights, please contact us at the email address in the Contact section. We will respond within <strong>30 days</strong>.</p>
+  </section>
+
+  <!-- ── 10. CHILDREN ── -->
+  <section id="children">
+    <div class="section-label">Section 10</div>
+    <h2>Children's Privacy</h2>
+    <p>
+      UPSC AudioBook is designed for individuals preparing for UPSC Civil Services Examinations and is intended for users aged <strong>18 years and above</strong>. We do not knowingly collect personal information from anyone under the age of 18.
+    </p>
+    <p>
+      If we discover that we have inadvertently collected data from a minor, we will promptly delete that information. Parents or guardians who believe their child has provided us with personal data should contact us immediately.
+    </p>
+  </section>
+
+  <!-- ── 11. CHANGES ── -->
+  <section id="changes">
+    <div class="section-label">Section 11</div>
+    <h2>Changes to This Policy</h2>
+    <p>
+      We may update this Privacy Policy from time to time to reflect changes in our practices, technology, or legal requirements. When we do, we will:
+    </p>
+    <ul>
+      <li>Update the "Last Updated" date at the top of this page.</li>
+      <li>Notify you through the app or via email for material changes.</li>
+      <li>Obtain fresh consent where required by law.</li>
+    </ul>
+    <p>
+      Continued use of the application after the revised policy becomes effective constitutes your acceptance of the updated terms.
+    </p>
+  </section>
+
+  <!-- ── 12. CONTACT ── -->
+  <section id="contact">
+    <div class="section-label">Section 12</div>
+    <h2>Contact Us</h2>
+    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your personal data, please reach out to us:</p>
+
+    <div class="contact-box">
+      <p><strong style="color:var(--gold-lt);">UPSC AudioBook — Privacy Team</strong></p>
+      <p>📧 Email: <a href="mailto:privacy@upscaudiobook.in">privacy@upscaudiobook.in</a></p>
+      <p>🌐 Website: <a href="#">www.upscaudiobook.in</a></p>
+      <p>📍 Address: [Your Registered Business Address], India</p>
+      <p style="margin-top:14px; font-size:13px; color:var(--muted);">
+        We aim to respond to all privacy-related queries within <strong style="color:var(--text);">5–7 business days</strong>. For account deletion requests, please include your registered email address in the subject line.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>© 2025 <span>UPSC AudioBook</span>. All rights reserved.</p>
+    <p style="margin-top:6px;">This Privacy Policy was last updated on <span>April 4, 2025</span>.</p>
+  </footer>
+
+</div>
+
+<!-- Back to top -->
+<a class="back-top" href="#" title="Back to top">↑</a>
+
+</body>
+</html>
